@@ -5,7 +5,7 @@ sys.setrecursionlimit(200000)
 def dfs(R):
     global cnt
     visited[R] += cnt
-    graph[R].sort(reverse=True)
+    graph[R].sort()
     for x in graph[R]:
         if visited[x] == 0:
             cnt += 1
