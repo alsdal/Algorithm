@@ -11,7 +11,6 @@ def dfs(R):
             cnt += 1
             dfs(x)
 
-
 N, M, R = map(int, input().split())
 graph = [[] for _ in range(N + 1)]
 visited = [0] * (N + 1)
