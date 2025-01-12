@@ -9,7 +9,6 @@ class SWEA_12712
 	{
 	System.setIn(new FileInputStream("in1.txt"));
 
-
 		Scanner sc = new Scanner(System.in);
 		int T;
 		T=sc.nextInt();
