@@ -1,4 +1,3 @@
-/* 파리퇴치3
 import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileInputStream;
@@ -51,4 +50,3 @@ class SWEA_12712
 		}
 	}
 }
-*/
