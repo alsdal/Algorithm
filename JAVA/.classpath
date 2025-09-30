@@ -7,5 +7,6 @@
 	<classpathentry kind="src" path="Baekjoon/그래프/위상정렬"/>
 	<classpathentry kind="src" path="Baekjoon/그리디"/>
 	<classpathentry kind="src" path="SWEA"/>
+	<classpathentry kind="src" path="Programmers"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

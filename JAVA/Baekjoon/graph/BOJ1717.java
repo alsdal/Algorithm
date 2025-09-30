@@ -1,4 +1,4 @@
-package BOJ;
+package graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
