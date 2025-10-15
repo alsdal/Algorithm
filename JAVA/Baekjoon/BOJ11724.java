@@ -60,13 +60,6 @@ public class BOJ11724 {
         }
     }
 	
-	
-	
-	
-	
-	
-	
-	
 //	static int[][] graph;
 //	static boolean[] visited;
 	
