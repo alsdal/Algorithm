@@ -4,26 +4,34 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
+/*
+문제 : 오큰수
+유형 : 스택, 자료구조
+난이도 : 골드4
+링크 : https://www.acmicpc.net/problem/17298
+ */
+
+
 public class BOJ17928 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
 		Stack<Integer> stack = new Stack<>();
 		
 		int N = Integer.parseInt(st.nextToken());
-		st = new StringTokenizer(br.readLine());
-		int[] arr = new int[N];
+		int[] A = new int[N];
 		int[] ans = new int[N];		
 		
+		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+			A[i] = Integer.parseInt(st.nextToken());
 		}
 		
 		for (int i = 0; i < N; i++) {
 			// 오큰수인 경우
-			while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
-				ans[stack.pop()] = arr[i];	// 정답 저장하고 스택 인덱스 제거
+			while (!stack.isEmpty() && A[stack.peek()] < A[i]) {
+				ans[stack.pop()] = A[i];	// 정답 저장하고 스택 인덱스 제거
 			}
 			stack.push(i);	// 스택 인덱스 푸시
 		}
