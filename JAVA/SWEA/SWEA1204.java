@@ -5,11 +5,34 @@
 */
 
 
-public class SWEA1204 {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+class SWEA1204 {
+	public static void main(String args[]) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+		int T = Integer.parseInt(br.readLine());
+
+		for (int test_case = 1; test_case <= T; test_case++) {
+			int[] arr = new int[101];
+			int max = 0;
+			int idx = 0;
+			
+			int test_num = Integer.parseInt(br.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			while (st.hasMoreTokens()) {
+				int score = Integer.parseInt(st.nextToken());
+				arr[score]++;
+			}
+			for (int i = 0; i < arr.length; i++) {
+				if (max <= arr[i]) {
+					max = arr[i];
+					idx = i;
+				}
+			}
+			System.out.println("#"+test_case+" "+idx);
+		}
 	}
-
 }
