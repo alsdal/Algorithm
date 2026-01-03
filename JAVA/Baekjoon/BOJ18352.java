@@ -1,78 +1,80 @@
+/*
+문제 : 특정 거리의 도시 찾기
+유형 : 그래프, 최단 경로, BFS, 다익스트라
+난이도 : 실버2
+링크 : https://www.acmicpc.net/problem/18352
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ18352 {
-	public static ArrayList<Integer>[] list;
-	public static int N, M, K, X, depth;
-	public static int[] distance;
+	static int N, M, K, X;
+	static ArrayList<Integer>[] list;
+	static int[] visited;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		// 변수 입력 및 초기화
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
 		X = Integer.parseInt(st.nextToken());
-		
-		list = new ArrayList[N + 1];	// 도시간 연결 도로 정보
-		distance = new int[N + 1];		// 출발지로부터 거리 정보
-        Arrays.fill(distance, -1);		// 방문하지 않은 도시 초기화
-        
-        // 도로 정보 입력
+
+		list = new ArrayList[N + 1];
 		for (int i = 1; i <= N; i++) {
 			list[i] = new ArrayList<Integer>();
 		}
+		visited = new int[N + 1];
+
+		// 단방향 도로 입력
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
-			int start = Integer.parseInt(st.nextToken());
-			int end = Integer.parseInt(st.nextToken());
-			list[start].add(end);
+			int A = Integer.parseInt(st.nextToken());
+			int B = Integer.parseInt(st.nextToken());
+			list[A].add(B);
 		}
-		// 최단거리 K인 도시 찾는 bfs 수행
+
+		// 거리 -1 초기화
+		for (int i = 1; i <= N; i++) {
+			visited[i] = -1;
+		}
+
 		bfs(X);
 
-	}
-
-	public static void bfs(int v) {
-		Queue<Integer> queue = new LinkedList<>();
-		ArrayList<Integer> result = new ArrayList<>();
-		boolean isPath = false;
-		
-		queue.add(v);
-		distance[v] = 0;
-		
-		while (!queue.isEmpty()) {
-			int node = queue.poll();
-			for (int i : list[node]) {
-				if (distance[i]==-1) {	// 방문하지 않은 도시
-					distance[i] = distance[node] + 1;	// 거리 1 추가
-					queue.add(i);
-					// 거리 == K이면
-					if (distance[i] == K) {
-						result.add(i);
-						isPath = true;
-					}
-					
-				}
-			}
-		}
-		// 최단 거리 == K 존재한다면
-		if(isPath) {
-			Collections.sort(result);
-			for(int i : result) {
+		// 정답 출력
+		boolean isAnswer = false;
+		for (int i = 0; i <= N; i++) {
+			if (visited[i] == K) {
+				isAnswer = true;
 				System.out.println(i);
 			}
 		}
-		// 최단 거리 == K 존재하지 않으면
-		else {			
+		if (!isAnswer) {
 			System.out.println(-1);
+		}
+	}
+
+	public static void bfs(int v) {
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.add(v);
+		visited[v]++;
+
+		while (!queue.isEmpty()) {
+			int node = queue.poll();
+			for (int i : list[node]) {
+				if (visited[i] == -1) {
+					visited[i] = visited[node] + 1;
+					queue.add(i);
+				}
+			}
 		}
 	}
 }
