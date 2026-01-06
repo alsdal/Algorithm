@@ -1,5 +1,9 @@
-
-
+/*
+문제 : 동전 0
+유형 : 그리디
+난이도 : 실버4
+링크 : https://www.acmicpc.net/problem/11047
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,11 +19,10 @@ public class BOJ11047 {
 		int[] coins = new int[N];
 		int cnt = 0;
 
-		// 동전 종류 입력
 		for (int i = 0; i < N; i++) {
 			coins[i] = Integer.parseInt(br.readLine());
 		}
-		// 큰 동전 순서대로 남은 금액에서 빼기.
+
 		for (int i = N - 1; i >= 0; i--) {
 			if (K >= coins[i]) {
 				cnt += K / coins[i];
