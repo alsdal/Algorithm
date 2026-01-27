@@ -47,7 +47,6 @@ public class BOJ1987 {
 				visited[board[nx][ny] - 'A'] = true;
 				dfs(nx, ny, depth + 1);
 				visited[board[nx][ny] - 'A'] = false;
-				
 			}
 		}
 	}
