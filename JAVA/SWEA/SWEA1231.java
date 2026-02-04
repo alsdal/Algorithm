@@ -1,8 +1,14 @@
+/*
+문제 : 중위순회
+난이도 : D4
+링크 : https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV140YnqAIECFAYD
+*/
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class SWEA1231 {
+class SWEA1231 {
 	static int N;
 	static char[] tree;
 	static StringBuilder sb;
