@@ -1,14 +1,15 @@
-import java.io.FileInputStream;
+/*
+문제 : 두 개의 숫자열
+난이도 : D2
+링크 : https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5PpoFaAS4DFAUq
+*/
+
 import java.util.Scanner;
 
-// #1959. 두 개의 숫자열
-public class SWEA_1959 {
+public class SWEA1959 {
 	public static void main(String args[]) throws Exception {
-		System.setIn(new FileInputStream("input1959.txt"));
-
 		Scanner sc = new Scanner(System.in);
-		int T;
-		T = sc.nextInt();
+		int T = sc.nextInt();
 
 		for (int test_case = 1; test_case <= T; test_case++) {
 			int N = sc.nextInt();
@@ -41,7 +42,7 @@ public class SWEA_1959 {
 						maxSum = sum;
 				}
 			}
-			System.out.printf("#%d %d\n", test_case, maxSum);
+			System.out.println("#" + test_case + " " + maxSum);
 		}
 	}
 }
