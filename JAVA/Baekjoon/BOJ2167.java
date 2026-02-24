@@ -1,3 +1,10 @@
+/*
+문제 : 2차원 배열의 합
+유형 : 구현, 누적합
+난이도 : 실버5
+링크 : https://www.acmicpc.net/problem/2167
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
