@@ -1,14 +1,16 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-
 /*
 문제 : 구간 합 구하기 4
 유형 : 누적합
 난이도 : 실버3
 링크 : https://www.acmicpc.net/problem/11659
  */
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 
 public class BOJ11659 {
 	public static void main(String[] args) throws IOException {
