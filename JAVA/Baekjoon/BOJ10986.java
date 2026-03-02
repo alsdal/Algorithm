@@ -14,6 +14,43 @@ public class BOJ10986 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		int N = Integer.parseInt(st.nextToken()); // 수의 개수
+		int M = Integer.parseInt(st.nextToken()); // 나눌 수
+
+		long[] arr = new long[N + 1];
+		long[] mod = new long[M];
+
+		st = new StringTokenizer(br.readLine());
+		for (int i = 1; i <= N; i++) {
+			arr[i] = Integer.parseInt(st.nextToken()) + arr[i - 1];
+		}
+
+		long cnt = 0; // M으로 나누어 떨어지는 구간 개수
+		for (int i = 1; i <= N; i++) {
+			int R = (int) (arr[i] % M);
+			if (R == 0) { // 나머지 0인 개수 세기
+				cnt++;
+			}
+			mod[R]++;
+		}
+
+		// 나머지가 같은 인덱스에서 각각 2개씩 뽑아 구간합 계산
+		for (int i = 0; i < M; i++) {
+			if (mod[i] >= 2) { // 나머지 같은 구간이 2개 이상인 경우
+				cnt = cnt + (mod[i] * (mod[i] - 1) / 2);
+			}
+		}
+		System.out.println(cnt);
+	}
+}
+
+
+/*
+public class BOJ10986 {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
@@ -42,3 +79,4 @@ public class BOJ10986 {
 		System.out.println(ans);
 	}
 }
+*/
