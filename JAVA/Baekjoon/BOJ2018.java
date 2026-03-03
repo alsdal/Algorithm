@@ -10,26 +10,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BOJ2018 {
-	public static void main(String[] args) throws IOException {
+	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
 		int N = Integer.parseInt(br.readLine());
+		int s = 0;
+		int e = 0;
+		int sum = 0; // 수들의 합
+		int cnt = 0; // 연속된 자연수의 합 가지수
 
-		int start = 1;
-		int end = 1;
-		int cnt = 1;
-		int sum = 1;
-
-		while (start < N) {
+		while (e <= N) {
 			if (sum == N) {
-				sum -= start;
 				cnt++;
-				start++;
+				sum -= s++;
 			} else if (sum < N) {
-				end++;
-				sum += end;
+				sum += ++e;
 			} else if (sum > N) {
-				sum -= start;
-				start++;
+				sum -= s++;
 			}
 		}
 		System.out.println(cnt);
