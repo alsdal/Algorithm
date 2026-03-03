@@ -14,12 +14,12 @@ public class BOJ2018 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int N = Integer.parseInt(br.readLine());
-		int s = 0;
-		int e = 0;
-		int sum = 0; // 수들의 합
-		int cnt = 0; // 연속된 자연수의 합 가지수
+		int s = 1;
+		int e = 1;
+		int sum = 1; // 수들의 합
+		int cnt = 1; // 연속된 자연수의 합 가지수
 
-		while (e <= N) {
+		while (e < N) {
 			if (sum == N) {
 				cnt++;
 				sum -= s++;
