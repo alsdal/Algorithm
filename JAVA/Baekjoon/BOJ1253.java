@@ -9,6 +9,55 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+
+public class BOJ1253 {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		long[] arr = new long[N];
+		for (int i = 0; i < N; i++) {
+			arr[i] = Long.parseLong(st.nextToken());
+		}
+		Arrays.sort(arr);
+		int cnt = 0;
+
+		for (int i = 0; i < N; i++) {
+			long K = arr[i];
+			int a = 0;
+			int b = N - 1;
+			while (a < b) {
+				long sum = arr[a] + arr[b];
+				if (sum == K) {
+					if (a != i && b != i) {
+						cnt++;
+						break;
+					} else if (a == i) {
+						a++;
+					} else if (b == i) {
+						b--;
+					}
+				} else if (sum < K) {
+					a++;
+				} else if (sum > K) {
+					b--;
+				}
+			}
+		}
+		System.out.println(cnt);
+	}
+}
+
+
+/*
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ1253 {
@@ -50,3 +99,4 @@ public class BOJ1253 {
 		System.out.println(result);
 	}
 }
+*/
