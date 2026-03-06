@@ -32,7 +32,7 @@ public class BOJ1253 {
 			while (a < b) {
 				long sum = arr[a] + arr[b];
 				if (sum == K) {
-					if (a != i && b != i) {
+					if (a != i && b != i) { // K와 다른 두 수이어야하므로 a 또는 b가 i일 때 건너뜀
 						cnt++;
 						break;
 					} else if (a == i) {
