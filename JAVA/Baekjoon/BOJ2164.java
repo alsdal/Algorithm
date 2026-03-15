@@ -28,12 +28,3 @@ public class BOJ2164 {
 		System.out.println(queue.poll());
 	}
 }
-
-/*
- * 1 2 3 4
- * 2 3 4
- * 3 4 2
- * 4 2
- * 2 4
- * 4
- */
