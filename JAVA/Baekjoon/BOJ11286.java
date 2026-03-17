@@ -15,14 +15,11 @@ public class BOJ11286 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int N = Integer.parseInt(br.readLine()); // 연산의 개수
-		PriorityQueue<Integer> queue = new PriorityQueue<>((o1, o2) -> {
-			int abs1 = Math.abs(o1);
-			int abs2 = Math.abs(o2);
-			if (abs1 == abs2) {
-				return o1 > o2 ? 1 : -1;
-			} else {
-				return abs1 - abs2;
-			}
+		PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> {
+		    if (Math.abs(a) == Math.abs(b)) {
+		        return a - b;
+		    }
+		    return Math.abs(a) - Math.abs(b);
 		});
 
 		for (int i = 0; i < N; i++) {
@@ -40,3 +37,15 @@ public class BOJ11286 {
 		}
 	}
 }
+
+/*
+ 		PriorityQueue<Integer> queue = new PriorityQueue<>((o1, o2) -> {
+			int abs1 = Math.abs(o1);
+			int abs2 = Math.abs(o2);
+			if (abs1 == abs2) {
+				return o1 > o2 ? 1 : -1;
+			} else {
+				return abs1 - abs2;
+			}
+		});
+*/
