@@ -7,16 +7,17 @@ public class BOJ1377 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int N = Integer.parseInt(br.readLine());
+		int N = Integer.parseInt(br.readLine()); // 배열의 크기
 		node[] A = new node[N];
 
 		for (int i = 0; i < N; i++) {
 			A[i] = new node(Integer.parseInt(br.readLine()), i);
 		}
 
-		Arrays.sort(A);
+		Arrays.sort(A); // 정렬 O(nlogn)
 
 		int max = 0;
+		// 정렬 전 인덱스 - 정렬 후 인덱스 값의 최댓값 구하기
 		for (int i = 0; i < N; i++) {
 			if (max < A[i].idx - i) {
 				max = A[i].idx - i;
