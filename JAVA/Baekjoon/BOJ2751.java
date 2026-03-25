@@ -13,7 +13,6 @@ import java.util.Collections;
 
 public class BOJ2751 {
 	public static int[] A, tmp;
-	public static long result;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,12 +21,12 @@ public class BOJ2751 {
 		int N = Integer.parseInt(br.readLine());
 		A = new int[N + 1];
 		tmp = new int[N + 1];
-		
+
 		for (int i = 0; i < N; i++) {
 			A[i] = Integer.parseInt(br.readLine());
 		}
 
-		mergeSort(0, N - 1);
+		mergeSort(0, N - 1); // 병합 정렬 수행
 
 		for (int i = 0; i < N; i++) {
 			sb.append(A[i] + "\n");
@@ -40,9 +39,9 @@ public class BOJ2751 {
 		if (e - s < 1) {
 			return;
 		}
-		
-		int m = (s + e)/ 2;
-		
+
+		int m = (s + e) / 2;
+
 		// 왼쪽 정렬
 		mergeSort(s, m);
 		// 오른쪽 정렬
@@ -50,33 +49,32 @@ public class BOJ2751 {
 		// 병합
 		merge(s, m, e);
 	}
-	
+
 	public static void merge(int s, int m, int e) {
-		int i = s;	// 왼쪽 배열 인덱스
+		int i = s; // 왼쪽 배열 인덱스
 		int j = m + 1; // 오른쪽 배열 인덱스
-		int k = s;	// tmp배열 인덱스
-		
+		int k = s; // tmp 배열 인덱스
+
 		// tmp 배열에 오름차순으로 저장
-		while(i <= m && j <= e) {
-			if(A[i] <= A[j]) {
+		while (i <= m && j <= e) {
+			if (A[i] <= A[j]) {
 				tmp[k++] = A[i++];
 			} else {
 				tmp[k++] = A[j++];
 			}
 		}
-		
+
 		// 배열에 남아있는 값 복사
-		while(i <= m) {
+		while (i <= m) {
 			tmp[k++] = A[i++];
 		}
-		while(j <= e) {
+		while (j <= e) {
 			tmp[k++] = A[j++];
 		}
-		
+
 		// tmp 배열 복사
 		for (int t = s; t <= e; t++) {
 			A[t] = tmp[t];
 		}
-		
 	}
 }
