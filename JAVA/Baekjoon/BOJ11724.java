@@ -1,4 +1,3 @@
-
 /*
 문제 : 연결 요소의 개수
 유형 : 그래프, DFS, BFS
@@ -19,10 +18,10 @@ public class BOJ11724 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken()); // 정점의 개수
+		int M = Integer.parseInt(st.nextToken()); // 간선의 개수
 
-		graph = new ArrayList[N+1];
+		graph = new ArrayList[N + 1];
 		for (int i = 1; i <= N; i++) {
 			graph[i] = new ArrayList<>();
 		}
@@ -35,18 +34,18 @@ public class BOJ11724 {
 			graph[u].add(v);
 			graph[v].add(u);
 		}
-		
+
 		int count = 0;
 		for (int i = 1; i <= N; i++) {
-			if(!visited[i]) {
+			if (!visited[i]) {
 				dfs(i);
 				count++;
 			}
 		}
 		System.out.println(count);
 	}
-	
-	static public void dfs(int v) {
+
+	static void dfs(int v) {
 		visited[v] = true;
 		for (int i : graph[v]) {
 			if(!visited[i]) {
