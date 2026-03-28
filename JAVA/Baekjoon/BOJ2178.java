@@ -14,8 +14,7 @@ import java.util.StringTokenizer;
 
 public class BOJ2178 {
 	static int[][] maze;
-	static int N;
-	static int M;
+	static int N, M;
 	static int dx[] = { 0, 1, 0, -1 };
 	static int dy[] = { 1, 0, -1, 0 };
 
@@ -23,11 +22,10 @@ public class BOJ2178 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(st.nextToken()); // N개의 줄
+		M = Integer.parseInt(st.nextToken()); // M개의 정수
 		maze = new int[N][M];
 
-		// 그래프 입력
 		for (int i = 0; i < N; i++) {
 			String row = br.readLine();
 			for (int j = 0; j < M; j++) {
@@ -37,26 +35,22 @@ public class BOJ2178 {
 		System.out.println(bfs(0, 0));
 	}
 
-	public static int bfs(int a, int b) {
+	static int bfs(int a, int b) {
 		Queue<int[]> queue = new LinkedList<>();
 		queue.add(new int[] { a, b });
 
 		while (!queue.isEmpty()) {
-			int[] pop = queue.poll();
-			int x = pop[0];
-			int y = pop[1];
+			int[] next = queue.poll();
+			int x = next[0];
+			int y = next[1];
 
-			// 4방향에 대해
 			for (int i = 0; i < 4; i++) {
 				int nx = x + dx[i];
 				int ny = y + dy[i];
-				// 경계값 검사
-				if (nx >= 0 && ny >= 0 && nx < N && ny < M) {
-					if (maze[nx][ny] == 1) {
-						// 이동 거리 +1
-						maze[nx][ny] = maze[x][y] + 1;
-						queue.add(new int[] { nx, ny });
-					}
+
+				if (nx >= 0 && ny >= 0 && nx < N && ny < M && maze[nx][ny] == 1) {
+					queue.add(new int[] { nx, ny });
+					maze[nx][ny] = maze[x][y] + 1;
 				}
 			}
 		}
