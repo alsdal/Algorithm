@@ -14,30 +14,30 @@ public class BOJ2023 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
-		
-		dfs(2,1);
-		dfs(3,1);
-		dfs(5,1);
-		dfs(7,1);
+
+		dfs(2, 1);
+		dfs(3, 1);
+		dfs(5, 1);
+		dfs(7, 1);
 	}
-	
-	public static void dfs(int n, int depth) { 
-		if(depth == N) {
-			if(isPrime(n)) {
-				System.out.println(n);
+
+	public static void dfs(int num, int digit) {
+		// N자리 소수 출력
+		if (digit == N) {
+			if (isPrime(num)) {
+				System.out.println(num);
 			}
 			return;
 		}
-		// 2씩 더하여 홀수인 경우만
+		// 새 자릿수에 홀수 추가, 소수이면 재귀
 		for (int i = 1; i < 10; i += 2) {
-			if(isPrime(n*10 + i)) {
-				dfs(n * 10 + i, depth + 1);
+			if (isPrime(num * 10 + i)) {
+				dfs(num * 10 + i, digit + 1);
 			}
 		}
-		
 	}
-	
-	// 소수 판별 함수
+
+	// 소수 판별
 	public static boolean isPrime(int n) {
 		for (int i = 2; i <= n / 2; i++) {
 			if (n % i == 0) {
