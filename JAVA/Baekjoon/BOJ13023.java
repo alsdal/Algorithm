@@ -1,20 +1,20 @@
-
 /*
 문제 : ABCDE
 유형 : 그래프, DFS, 백트래킹
 난이도 : 골드5
 링크 : https://www.acmicpc.net/problem/13023
  */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class BOJ13023 {
-	static int N;
-	static int M;
-	static ArrayList<Integer>[] list;
+	static int N, M;
+	static List<Integer>[] list;
 	static boolean[] visited;
 	static boolean result;
 
@@ -22,14 +22,14 @@ public class BOJ13023 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		list = new ArrayList[N];
-		visited = new boolean[N];
+		N = Integer.parseInt(st.nextToken()); // 사람의 수
+		M = Integer.parseInt(st.nextToken()); // 친구 관계의 수
 
+		list = new ArrayList[N];
 		for (int i = 0; i < N; i++) {
-			list[i] = new ArrayList<Integer>();
+			list[i] = new ArrayList<>();
 		}
+		visited = new boolean[N];
 
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -39,10 +39,14 @@ public class BOJ13023 {
 			list[b].add(a);
 		}
 
+		// dfs 수행
 		for (int i = 0; i < N; i++) {
 			dfs(i, 1);
+			if (result)
+				break;
 		}
 
+		// 결과 출력
 		if (result) {
 			System.out.println(1);
 		} else {
@@ -50,16 +54,16 @@ public class BOJ13023 {
 		}
 	}
 
-	public static void dfs(int v, int depth) {
-		visited[v] = true;
-		if (depth == 5) {
+	public static void dfs(int v, int d) {
+		if (d == 5) {
 			result = true;
 			return;
 		}
 
+		visited[v] = true;
 		for (int i : list[v]) {
 			if (!visited[i]) {
-				dfs(i, depth + 1);
+				dfs(i, d + 1);
 			}
 		}
 		visited[v] = false;
