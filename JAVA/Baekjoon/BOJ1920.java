@@ -25,7 +25,7 @@ public class BOJ1920 {
 		}
 		Arrays.sort(A);
 
-		int M = Integer.parseInt(st.nextToken()); // 찾아야할 정수 개수
+		int M = Integer.parseInt(br.readLine()); // 찾아야할 정수 개수
 		int[] X = new int[M];
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < M; i++) {
@@ -38,7 +38,7 @@ public class BOJ1920 {
 			boolean foundNum = false;
 
 			// 이분 탐색
-			while (s < e) {
+			while (s <= e) {
 				int m = (s + e) / 2;
 				if (A[m] == X[i]) {
 					foundNum = true;
