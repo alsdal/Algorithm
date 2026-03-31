@@ -1,9 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
-
 /*
 문제 : 수 찾기
 유형 : 이분탐색
@@ -11,14 +5,19 @@ import java.util.StringTokenizer;
 링크 : https://www.acmicpc.net/problem/1920
  */
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
 public class BOJ1920 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		StringBuilder sb = new StringBuilder();
 
-		// N, A 입력
-		int N = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken()); // N개의 정수
 		int[] A = new int[N];
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N; i++) {
@@ -26,8 +25,7 @@ public class BOJ1920 {
 		}
 		Arrays.sort(A);
 
-		// M, X 입력
-		int M = Integer.parseInt(br.readLine());
+		int M = Integer.parseInt(st.nextToken()); // 찾아야할 정수 개수
 		int[] X = new int[M];
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < M; i++) {
@@ -35,31 +33,30 @@ public class BOJ1920 {
 		}
 
 		for (int i = 0; i < M; i++) {
-			int start = 0, end = N - 1; // 시작, 끝 인덱스
-			boolean isNum = false; // 숫자 존재 여부
+			int s = 0;
+			int e = N - 1;
+			boolean foundNum = false;
 
 			// 이분 탐색
-			while (start <= end) {
-				int mid = (start + end) / 2;
-				// 수 발견
-				if (A[mid] == X[i]) {
-					isNum = true;
+			while (s < e) {
+				int m = (s + e) / 2;
+				if (A[m] == X[i]) {
+					foundNum = true;
 					break;
-				}
-				// 인덱스 조정
-				else if (A[mid] > X[i]) {
-					end = mid - 1;
+				} else if (A[m] > X[i]) {
+					e = m - 1;
 				} else {
-					start = mid + 1;
+					s = m + 1;
 				}
 			}
 
-			// 출력
-			if (isNum) {
+			if (foundNum) {
 				System.out.println(1);
+
 			} else {
 				System.out.println(0);
 			}
 		}
+
 	}
 }
