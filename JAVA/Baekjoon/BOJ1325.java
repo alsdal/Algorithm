@@ -10,46 +10,48 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ1325 {
 	static int N, M;
-	static ArrayList<Integer>[] pc;
-	static int[] numHacked; // 해킹 가능한 최대 컴퓨터 수
+	static List<Integer>[] list;
+	static int[] numHacked;
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		StringBuilder sb = new StringBuilder();
 
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(st.nextToken()); // 컴퓨터 수
+		M = Integer.parseInt(st.nextToken()); // 관계 수
 
-		pc = new ArrayList[N + 1];
+		list = new ArrayList[N + 1]; // 컴퓨터 연결 정보
 		for (int i = 1; i <= N; i++) {
-			pc[i] = new ArrayList<>();
+			list[i] = new ArrayList<>();
 		}
-		numHacked = new int[N + 1];
+		numHacked = new int[N + 1]; // 최대 해킹 가능한 컴퓨터 수
 
+		// 캄퓨터 연결 정보 입력
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
 			int A = Integer.parseInt(st.nextToken());
 			int B = Integer.parseInt(st.nextToken());
-			pc[B].add(A);
+			list[B].add(A);
 		}
 
-		// 모든 컴퓨터에 대해 BFS 수행
+		// bfs 수행해서 해킹 가능한 컴퓨터수, 최대 해킹 가능 수 구하기
 		int maxHacked = 0;
 		for (int i = 1; i <= N; i++) {
 			numHacked[i] = bfs(i);
-			maxHacked = Math.max(numHacked[i], maxHacked);
+			maxHacked = Math.max(maxHacked, numHacked[i]);
 		}
-
-		// 최대 해킹 가능한 컴퓨터 번호 저장
+		
+		// 정답 출력
 		for (int i = 1; i <= N; i++) {
-			if (numHacked[i] == maxHacked) {
-				sb.append(i).append(" ");
+			if(numHacked[i] == maxHacked) {
+				sb.append(i + " ");
 			}
 		}
 		System.out.println(sb);
@@ -57,18 +59,19 @@ public class BOJ1325 {
 
 	public static int bfs(int v) {
 		Queue<Integer> queue = new LinkedList<>();
-		boolean[] visited = new boolean[N + 1];
-		int cnt = 0; // 해킹 가능한 컴퓨터 수
 		queue.add(v);
+
+		boolean[] visited = new boolean[N + 1];
 		visited[v] = true;
 
+		int cnt = 1; // 해킹 가능한 컴퓨터 수
 		while (!queue.isEmpty()) {
-			int node = queue.poll();
-			for (int i : pc[node]) {
-				if (!visited[i]) {
-					queue.add(i);
+			int cur = queue.poll();
+			for (int next : list[cur]) {
+				if (!visited[next]) {
+					queue.add(next);
+					visited[next] = true;
 					cnt++;
-					visited[i] = true;
 				}
 			}
 		}
