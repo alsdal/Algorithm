@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -34,6 +35,7 @@ public class BOJ18352 {
 		for (int i = 1; i <= N; i++) {
 			list[i] = new ArrayList<>();
 		}
+		Arrays.fill(visited, -1); // 거리 -1로 초기화
 
 		// 도로 입력
 		for (int i = 0; i < M; i++) {
@@ -61,11 +63,12 @@ public class BOJ18352 {
 	public static void bfs(int X) {
 		Queue<Integer> queue = new LinkedList<>();
 		queue.add(X);
+		visited[X]++;
 		
 		while(!queue.isEmpty()) {
 			int cur = queue.poll();
 			for (int i : list[cur]) {
-				if(visited[i] == 0) {
+				if(visited[i] == -1) {
 					queue.add(i);
 					visited[i] = visited[cur] + 1;
 				}
