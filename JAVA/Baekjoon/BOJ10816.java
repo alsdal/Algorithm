@@ -12,31 +12,31 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ10816 {
+	static int[] cards;
+
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 
 		int N = Integer.parseInt(br.readLine()); // 숫자 카드 개수
-		st = new StringTokenizer(br.readLine());
-		int[] cards = new int[N];
-		
+		cards = new int[N];
+
+		st = new StringTokenizer(br.readLine()); // 숫자 카드 입력
 		for (int i = 0; i < N; i++) {
-			cards[i] = Integer.parseInt(st.nextToken()); // 숫자 카드 입력
+			cards[i] = Integer.parseInt(st.nextToken());
 		}
+		Arrays.sort(cards); // 카드 오름차순 정렬
 
-		Arrays.sort(cards); // 숫자 카드 정렬
+		int M = Integer.parseInt(br.readLine()); // 구해야할 정수의 개수
 
-		int M = Integer.parseInt(br.readLine()); // 구해야 할 카드 수
-		st = new StringTokenizer(br.readLine());
+		st = new StringTokenizer(br.readLine()); // 구해야할 정수
 		StringBuilder sb = new StringBuilder();
-
 		for (int i = 0; i < M; i++) {
 			int num = Integer.parseInt(st.nextToken());
-			sb.append(upperBound(cards, num) - lowerBound(cards, num)).append(" "); // 양쪽 경계값 이분 탐색하여 개수 계산
+			sb.append(upperBound(cards, num) - lowerBound(cards, num) + " ");
 		}
 
 		System.out.println(sb);
-
 	}
 
 	// 하한 이분탐색
