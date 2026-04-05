@@ -16,23 +16,22 @@ public class BOJ10815 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 
-		int N = Integer.parseInt(br.readLine());
+		int N = Integer.parseInt(br.readLine()); // 숫자 카드 개수
 		int[] cards = new int[N];
 
-		st = new StringTokenizer(br.readLine());
+		st = new StringTokenizer(br.readLine()); // 숫자 카드에 적힌 정수
 		for (int i = 0; i < N; i++) {
 			cards[i] = Integer.parseInt(st.nextToken());
 		}
 		Arrays.sort(cards);
 
-		int M = Integer.parseInt(br.readLine());
-		st = new StringTokenizer(br.readLine());
+		int M = Integer.parseInt(br.readLine()); // 구해야할 정수 개수
+		st = new StringTokenizer(br.readLine()); // 구해야하는 정수
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < M; i++) {
-			int key = Integer.parseInt(st.nextToken());
-			sb.append(hasCard(cards, key)).append(" ");
+			int num = Integer.parseInt(st.nextToken());
+			sb.append(hasCard(cards, num)).append(" ");
 		}
-		
 		System.out.println(sb);
 	}
 
@@ -42,13 +41,11 @@ public class BOJ10815 {
 
 		while (s <= e) {
 			int m = (s + e) / 2;
-			if(key < cards[m]) {
+			if (key < cards[m]) {
 				e = m - 1;
-			}
-			else if(key > cards[m]) {
+			} else if (key > cards[m]) {
 				s = m + 1;
-			}
-			else {
+			} else {
 				return 1;
 			}
 		}
