@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ15649 {
+	static int N, M;
 	static int[] arr;
 	static boolean[] visited;
 	static StringBuilder sb = new StringBuilder();
@@ -19,30 +20,30 @@ public class BOJ15649 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
 
 		arr = new int[M];
 		visited = new boolean[N + 1];
 
-		dfs(N, M, 0);
+		dfs(0);
 		System.out.println(sb);
 	}
 
-	public static void dfs(int n, int m, int depth) {
-		if (depth == m) {
-			for (int val : arr) {
-				sb.append(val).append(" ");
+	public static void dfs(int depth) {
+		if (depth == M) {
+			for (int i : arr) {
+				sb.append(i + " ");
 			}
 			sb.append("\n");
 			return;
 		}
 
-		for (int i = 1; i <= n; i++) {
+		for (int i = 1; i <= N; i++) {
 			if (!visited[i]) {
 				visited[i] = true;
 				arr[depth] = i;
-				dfs(n, m, depth + 1);
+				dfs(depth + 1);
 				visited[i] = false;
 			}
 		}
