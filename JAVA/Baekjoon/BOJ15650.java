@@ -19,10 +19,10 @@ public class BOJ15650 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-
+		N = Integer.parseInt(st.nextToken()); // 1부터 N까지의 자연수
+		M = Integer.parseInt(st.nextToken()); // 중복 없이 M개 고른 수열
 		arr = new int[M];
+
 		dfs(1, 0);
 		System.out.println(sb);
 	}
@@ -30,7 +30,7 @@ public class BOJ15650 {
 	public static void dfs(int at, int depth) {
 		if (depth == M) {
 			for (int i : arr) {
-				sb.append(i).append(" ");
+				sb.append(i + " ");
 			}
 			sb.append("\n");
 			return;
@@ -41,5 +41,4 @@ public class BOJ15650 {
 			dfs(i + 1, depth + 1);
 		}
 	}
-
 }
