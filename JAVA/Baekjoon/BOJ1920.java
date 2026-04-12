@@ -14,10 +14,10 @@ import java.util.StringTokenizer;
 public class BOJ1920 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringTokenizer st;
 		StringBuilder sb = new StringBuilder();
 
-		int N = Integer.parseInt(st.nextToken()); // N개의 정수
+		int N = Integer.parseInt(br.readLine()); // 주어지는 정수 개수
 		int[] A = new int[N];
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N; i++) {
@@ -25,38 +25,34 @@ public class BOJ1920 {
 		}
 		Arrays.sort(A);
 
-		int M = Integer.parseInt(br.readLine()); // 찾아야할 정수 개수
-		int[] X = new int[M];
+		int M = Integer.parseInt(br.readLine()); // 존재하는지 알아낼 정수의 개수
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < M; i++) {
-			X[i] = Integer.parseInt(st.nextToken());
-		}
+			int num = Integer.parseInt(st.nextToken());
 
-		for (int i = 0; i < M; i++) {
 			int s = 0;
 			int e = N - 1;
-			boolean foundNum = false;
+			boolean hasNum = false;
 
 			// 이분 탐색
 			while (s <= e) {
 				int m = (s + e) / 2;
-				if (A[m] == X[i]) {
-					foundNum = true;
+				if (num == A[m]) {
+					hasNum = true;
 					break;
-				} else if (A[m] > X[i]) {
+				} else if (num < A[m]) {
 					e = m - 1;
 				} else {
 					s = m + 1;
 				}
 			}
 
-			if (foundNum) {
-				System.out.println(1);
-
+			if (hasNum) {
+				sb.append(1 + "\n");
 			} else {
-				System.out.println(0);
+				sb.append(0 + "\n");
 			}
 		}
-
+		System.out.println(sb);
 	}
 }
