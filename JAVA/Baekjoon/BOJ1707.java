@@ -47,7 +47,7 @@ public class BOJ1707 {
 			for (int j = 1; j <= V; j++) {
 				if (visited[j] == 0) {
 					dfs(j);
-					if(!ans) {
+					if (!ans) {
 						break;
 					}
 				}
@@ -62,17 +62,17 @@ public class BOJ1707 {
 	}
 
 	public static void dfs(int v) {
-		visited[v] = 1;
+		if(visited[v] == 0) {
+			visited[v] = 1;			
+		}
 		for (int i : list[v]) {
-			if(visited[i] == 0) {
+			if (visited[i] == 0) {
 				visited[i] = visited[v] * (-1);
 				dfs(i);
-			}
-			else if (visited[i] == visited[v]) {
+			} else if (visited[i] == visited[v]) {
 				ans = false;
 				break;
 			}
 		}
-
 	}
 }
