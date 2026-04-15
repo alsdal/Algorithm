@@ -17,14 +17,16 @@ public class BOJ1181 {
 		StringBuilder sb = new StringBuilder();
 
 		int N = Integer.parseInt(br.readLine());
-		String words[] = new String[N];
+		String[] words = new String[N];
+
 		for (int i = 0; i < N; i++) {
 			words[i] = br.readLine();
 		}
 
 		Arrays.sort(words, new Comparator<String>() {
+			@Override
 			public int compare(String s1, String s2) {
-				// 단어 길이 같을 경우. compareTo 이용하여 사전순 정렬
+				// 단어 길이 같을 경우 사전순 정렬
 				if (s1.length() == s2.length()) {
 					return s1.compareTo(s2);
 				}
@@ -33,12 +35,12 @@ public class BOJ1181 {
 			}
 		});
 
-		sb.append(words[0]).append('\n');
+		sb.append(words[0] + "\n");
 
 		for (int i = 1; i < N; i++) {
 			// 중복 단어 추가 X
 			if (!words[i].equals(words[i - 1])) {
-				sb.append(words[i]).append('\n');
+				sb.append(words[i] + "\n");
 			}
 		}
 		System.out.println(sb);
