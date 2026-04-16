@@ -35,10 +35,10 @@ public class BOJ1181 {
 			}
 		});
 
+		// 단어 추가
 		sb.append(words[0] + "\n");
-
 		for (int i = 1; i < N; i++) {
-			// 중복 단어 추가 X
+			// 중복 단어가 아닐 경우에만 추가
 			if (!words[i].equals(words[i - 1])) {
 				sb.append(words[i] + "\n");
 			}
