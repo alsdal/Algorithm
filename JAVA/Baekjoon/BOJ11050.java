@@ -15,10 +15,10 @@ public class BOJ11050 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		int N = Integer.parseInt(st.nextToken());
-		int K = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken()); // 자연수 N
+		int K = Integer.parseInt(st.nextToken()); // 정수 K
 
-		System.out.println(factorial(N) / (factorial(N - K) * factorial(K)));
+		System.out.println(factorial(N) / (factorial(N - K) * factorial(K))); // 이항계수 공식
 	}
 
 	static int factorial(int N) {
