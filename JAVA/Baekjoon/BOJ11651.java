@@ -36,17 +36,9 @@ public class BOJ11651 {
 			}
 		});
 
-//		Arrays.sort(arr, (e1, e2) -> {
-//			if(e1[0] == e2[0]) {
-//				return e1[1] - e2[1];
-//			} else {
-//				return e1[0] - e2[0];
-//			}
-//		});
-		
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < N; i++) {
-			sb.append(arr[i][0]+" "+arr[i][1]+'\n');
+			sb.append(arr[i][0] + " " + arr[i][1] + '\n');
 		}
 		System.out.println(sb);
 	}
