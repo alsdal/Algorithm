@@ -1,3 +1,4 @@
+
 /*
 문제 : 동전 0
 유형 : 그리디
@@ -14,17 +15,17 @@ public class BOJ11047 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		int N = Integer.parseInt(st.nextToken());
-		int K = Integer.parseInt(st.nextToken());
-		int[] coins = new int[N];
-		int cnt = 0;
+		int N = Integer.parseInt(st.nextToken()); // 동전의 종류 수
+		int K = Integer.parseInt(st.nextToken()); // 필요한 금액
+		int[] coins = new int[N]; // 동전
+		int cnt = 0; // 사용할 동전의 수
 
 		for (int i = 0; i < N; i++) {
 			coins[i] = Integer.parseInt(br.readLine());
 		}
 
 		for (int i = N - 1; i >= 0; i--) {
-			if (K >= coins[i]) {
+			if (coins[i] <= K) {
 				cnt += K / coins[i];
 				K = K % coins[i];
 			}
