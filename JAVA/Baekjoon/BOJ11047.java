@@ -1,4 +1,3 @@
-
 /*
 문제 : 동전 0
 유형 : 그리디
@@ -23,7 +22,8 @@ public class BOJ11047 {
 		for (int i = 0; i < N; i++) {
 			coins[i] = Integer.parseInt(br.readLine());
 		}
-
+		
+		// 금액 큰 동전부터 순서대로 계산
 		for (int i = N - 1; i >= 0; i--) {
 			if (coins[i] <= K) {
 				cnt += K / coins[i];
