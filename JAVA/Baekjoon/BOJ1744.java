@@ -51,13 +51,12 @@ public class BOJ1744 {
 			int y = negQ.poll();
 			sum += (x * y);
 		}
-		// 0이 있을 경우
+		// 0이 없을 경우에만
 		if (!negQ.isEmpty()) {
 			if (!hasZero) {
 				sum += negQ.poll();
 			}
 		}
-
 		System.out.println(sum);
 	}
 }
