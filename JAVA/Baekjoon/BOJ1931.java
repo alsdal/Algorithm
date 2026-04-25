@@ -34,12 +34,12 @@ public class BOJ1931 {
 				return S[1] - E[1];
 			}
 		});
-	
+
 		// 겹치지 않도록 끝나는 시간 기준으로 회의 선택
 		int cnt = 0;
 		int endTime = 0;
 		for (int i = 0; i < N; i++) {
-			if(endTime <= schedule[i][0]) {
+			if (endTime <= schedule[i][0]) {
 				endTime = schedule[i][1];
 				cnt++;
 			}
