@@ -40,14 +40,14 @@ public class BOJ1431 {
 				return s1.compareTo(s2);
 			}
 		});
-		
+
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < N; i++) {
 			sb.append(S[i] + "\n");
 		}
 		System.out.println(sb);
 	}
-	
+
 	// 자릿수 합 구하는 함수
 	static int getSum(String s) {
 		int sum = 0;
