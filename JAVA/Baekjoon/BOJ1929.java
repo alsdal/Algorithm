@@ -29,11 +29,13 @@ public class BOJ1929 {
 			if(arr[i] == 0) {
 				continue;
 			}
+			// 배수 지우기
 			for (int j = 2 * i; j <= N; j = j + i) {
 				arr[j] = 0;
 			}
 		}
 		
+		// 소수 출력
 		for (int i = M; i <= N; i++) {
 			if (arr[i] != 0) {
 				System.out.println(arr[i]);
