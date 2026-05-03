@@ -1,66 +1,48 @@
-import java.util.Arrays;
 /*
 문제 : 체육복
 난이도 : 1
 링크 : https://school.programmers.co.kr/learn/courses/30/lessons/42862?language=java
  */
 
+import java.util.Arrays;
+
 public class PG42862 {
 	public static void main(String[] args) {
-		System.out.println(solution(3, new int[] { 3 }, new int[] { 1 }));
+		System.out.println(solution(5, new int[] { 2, 4 }, new int[] { 1, 3, 5 }));
 	}
 
 	public static int solution(int n, int[] lost, int[] reserve) {
-		int answer = n - lost.length;
+		int[] clothes = new int[n + 2]; // 체육복 개수 담을 배열
 
-		Arrays.sort(lost);
-		Arrays.sort(reserve);
+		// 체육복 개수 초기화
+		Arrays.fill(clothes, 1);
+		for (int i : lost) {
+			clothes[i]--;
+		}
+		for (int i : reserve) {
+			clothes[i]++;
+		}
 
-		for (int i = 0; i < lost.length; i++) {
-			for (int j = 0; j < reserve.length; j++) {
-				if (lost[i] == reserve[j]) {
-					lost[i] = -1;
-					reserve[j] = -1;
-					answer++;
+		// 앞번호 먼저 여분 체육복 빌려주기
+		for (int i = 1; i <= n; i++) {
+			if (clothes[i] == 0) {
+				if (clothes[i - 1] == 2) {
+					clothes[i - 1]--;
+					clothes[i]++;
+				} else if (clothes[i + 1] == 2) {
+					clothes[i + 1]--;
+					clothes[i]++;
 				}
-
 			}
 		}
 
-		for (int i = 0; i < lost.length; i++) {
-			if (lost[i] == -1)
-				continue;
-			for (int j = 0; j < reserve.length; j++) {
-				if (reserve[j] == -1)
-					continue;
-				if (lost[i] - 1 == reserve[j] || lost[i] + 1 == reserve[j]) {
-					answer++;
-					reserve[j] = -1;
-					break;
-				}
+		// 정답 출력
+		int answer = 0;
+		for (int i = 1; i <= n; i++) {
+			if (clothes[i] >= 1) {
+				answer++;
 			}
 		}
 		return answer;
 	}
-	
-	public static int solution2(int n, int[] lost, int[] reserve) {
-	    int[] clothes = new int[n + 2];
-	    Arrays.fill(clothes, 1);
-	    for (int l : lost) clothes[l]--;
-	    for (int r : reserve) clothes[r]++;
-
-	    for (int i = 1; i <= n; i++) {
-	        if (clothes[i] == 0) {
-	            if (clothes[i - 1] == 2) { clothes[i - 1]--; clothes[i]++; }
-	            else if (clothes[i + 1] == 2) { clothes[i + 1]--; clothes[i]++; }
-	        }
-	    }
-
-	    int answer = 0;
-	    for (int i = 1; i <= n; i++) if (clothes[i] >= 1) answer++;
-	    return answer;
-	}
 }
-
-
-
