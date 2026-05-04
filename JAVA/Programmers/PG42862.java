@@ -23,6 +23,7 @@ public class PG42862 {
 			clothes[i]++;
 		}
 
+		
 		// 앞번호 먼저 여분 체육복 빌려주기
 		for (int i = 1; i <= n; i++) {
 			if (clothes[i] == 0) {
