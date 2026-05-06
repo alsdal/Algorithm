@@ -18,7 +18,7 @@ public class PG12910 {
 
 	public static int[] solution(int[] arr, int divisor) {
 		List<Integer> list = new ArrayList<>();
-		
+
 		// 나누어 떨어지는 수 담기
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] % divisor == 0) {
