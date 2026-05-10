@@ -11,12 +11,11 @@ public class PG12944 {
 
 	public static double solution(int[] arr) {
 		double answer = 0;
-		
+
 		for (int i : arr) {
 			answer += i;
 		}
 		answer /= arr.length;
 		return answer;
 	}
-
 }
