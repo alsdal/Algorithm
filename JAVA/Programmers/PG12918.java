@@ -5,21 +5,21 @@
  */
 
 public class PG12918 {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		System.out.println(solution("1234"));
 	}
 
 	public static boolean solution(String s) {
-		if (s.length() == 4 || s.length() == 6) {
-			for (int i = 0; i < s.length(); i++) {
-				char c = s.charAt(i);
-
-				if (!Character.isDigit(c)) {
-					return false;
-				}
-			}
-			return true;
+		if (s.length() != 4 && s.length() != 6) {
+			return false;
 		}
-		return false;
+
+		for (int i = 0; i < s.length(); i++) {
+			if (!Character.isDigit(s.charAt(i))) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
