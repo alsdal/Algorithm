@@ -1,3 +1,9 @@
+/*
+문제 : 실패율
+난이도 : 1
+링크 : https://school.programmers.co.kr/learn/courses/30/lessons/42889
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
