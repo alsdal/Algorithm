@@ -17,6 +17,7 @@ public class PG43165 {
 	}
 
 	public static void dfs(int[] numbers, int target, int idx, int sum) {
+		// 타겟 넘버이면 카운팅
 		if (idx == numbers.length) {
 			if (sum == target) {
 				answer++;
@@ -24,7 +25,10 @@ public class PG43165 {
 			return;
 		}
 
+		// 더하는 경우
 		dfs(numbers, target, idx + 1, sum + numbers[idx]);
+		
+		// 빼는 경우
 		dfs(numbers, target, idx + 1, sum - numbers[idx]);
 	}
 }
