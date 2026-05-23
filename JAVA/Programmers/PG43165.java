@@ -1,6 +1,6 @@
 /*
 문제 : 타겟 넘버
-난이도 : 1
+난이도 : 2
 링크 : https://school.programmers.co.kr/learn/courses/30/lessons/43165
 */
 
