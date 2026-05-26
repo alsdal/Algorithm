@@ -1,3 +1,9 @@
+/*
+문제 : 모의고사
+난이도 : 1
+링크 : https://school.programmers.co.kr/learn/courses/30/lessons/42840
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +32,8 @@ public class PG42840 {
 			if (answers[i] == p3[i % p3.length]) {
 				score[2]++;
 			}
-
 		}
+
 		int max = Math.max(score[0], Math.max(score[1], score[2]));
 		List<Integer> list = new ArrayList<>();
 
@@ -41,8 +47,6 @@ public class PG42840 {
 		for (int i = 0; i < list.size(); i++) {
 			answer[i] = list.get(i);
 		}
-
 		return answer;
 	}
-
 }
