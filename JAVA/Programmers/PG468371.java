@@ -31,16 +31,18 @@ public class PG468371 {
 				int cycle = g + y + r;
 
 				int pos = time % cycle;
-				if (pos == 0)
+				if (pos == 0) {
 					pos = cycle;
+				}
 
 				// 하나라도 노란불이 아닌 경우
-		        if (!(g < pos && pos <= g + y)) {
-		            allYellow = false;
-		            break;
-		        }
+				if (!(g < pos && pos <= g + y)) {
+					allYellow = false;
+					break;
+				}
 			}
 
+			// 전부 노란불일 때 시간 반환
 			if (allYellow) {
 				return time;
 			}
@@ -48,6 +50,7 @@ public class PG468371 {
 		return -1;
 	}
 
+	// 최대공약수 구하기
 	public static int gcd(int a, int b) {
 		while (b != 0) {
 			int temp = a % b;
@@ -57,6 +60,7 @@ public class PG468371 {
 		return a;
 	}
 
+	// 최소공배수 구하기
 	public static int lcm(int a, int b) {
 		return a / gcd(a, b) * b;
 	}
