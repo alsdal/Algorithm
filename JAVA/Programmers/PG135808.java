@@ -1,3 +1,9 @@
+/*
+문제 : 과일 장수
+난이도 : 1
+링크 : https://school.programmers.co.kr/learn/courses/30/lessons/135808
+*/
+
 import java.util.Arrays;
 
 public class PG135808 {
