@@ -28,8 +28,8 @@ public class PG250125 {
 		int[] dh = { -1, 0, 1, 0 };
 	
 		for (int i = 0; i < 4; i++) {
-			int nw = w - dw[i];
-			int nh = h - dh[i];
+			int nw = w + dw[i];
+			int nh = h + dh[i];
 			
 			if (nw >= 0 && nw < n && nh >= 0 && nh < n) {
 				if (board[nh][nw].equals(color)) {
