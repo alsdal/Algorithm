@@ -34,6 +34,7 @@ public class PG42839 {
 	}
 
 	public static void dfs(String numbers, String cur, boolean[] visited) {
+		// 중복 처리
 		if (!cur.isEmpty()) {
 			set.add(Integer.parseInt(cur));
 		}
