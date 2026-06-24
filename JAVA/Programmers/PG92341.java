@@ -64,7 +64,7 @@ public class PG92341 {
 			}
 			list.add(new int[] { carNum, fee });
 		}
-		
+
 		// list -> arr 변환
 		int[] answer = new int[list.size()];
 		for (int i = 0; i < list.size(); i++) {
