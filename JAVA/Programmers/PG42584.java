@@ -9,6 +9,9 @@ import java.util.Stack;
 public class PG42584 {
 	public static void main(String[] args) {
 		int[] arr = solution(new int[] { 1, 2, 3, 2, 3 });
+		for (int i : arr) {
+			System.out.println(i);
+		}
 	}
 
 	public static int[] solution(int[] prices) {
