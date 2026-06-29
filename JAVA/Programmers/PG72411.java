@@ -39,13 +39,13 @@ public class PG72411 {
 				dfs(arr, n, 0, 0);
 			}
 
+			// 두 명 이상 주문한 요리만 추가
 			int max = 0;
 			for (int cnt : map.values()) {
 				if (cnt >= 2) {
 					max = Math.max(max, cnt);
 				}
 			}
-
 			for (String key : map.keySet()) {
 				if (map.get(key) == max && max >= 2) {
 					answer.add(key);
