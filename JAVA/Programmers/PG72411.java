@@ -26,11 +26,9 @@ public class PG72411 {
 		List<String> answer = new ArrayList<>();
 
 		for (int n : course) {
-
 			map = new HashMap<>();
-
 			for (String order : orders) {
-				// 사전순 정렬
+				// 사전순 정렬해서 중복 방지
 				char[] arr = order.toCharArray();
 				Arrays.sort(arr);
 
@@ -39,7 +37,7 @@ public class PG72411 {
 				dfs(arr, n, 0, 0);
 			}
 
-			// 두 명 이상 주문한 요리만 추가
+			// 두 명 이상 주문한 메뉴중 가장 많이 주문된 메뉴 추가
 			int max = 0;
 			for (int cnt : map.values()) {
 				if (cnt >= 2) {
@@ -51,10 +49,8 @@ public class PG72411 {
 					answer.add(key);
 				}
 			}
-
 		}
 		Collections.sort(answer);
-
 		return answer.toArray(new String[0]);
 	}
 
