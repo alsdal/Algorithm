@@ -80,6 +80,7 @@ public class PG150368 {
 			}
 		}
 
+		// 목적 최대치 갱신
 		if (maxService < serviceJoined) {
 			maxService = serviceJoined;
 			maxPrice = priceTotal;
