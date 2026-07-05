@@ -23,37 +23,35 @@ public class PG150369 {
 			while (p >= 0 && pickups[p] == 0) {
 				p--;
 			}
-			
-			if(d < 0 && p < 0) {
+
+			if (d < 0 && p < 0) {
 				break;
 			}
-			
+
 			// 왕복 거리 추가
-			answer += (long) (Math.max(d,p) + 1) * 2;
+			answer += (long) (Math.max(d, p) + 1) * 2;
 
 			// 배달
 			int load = cap;
-			while(d >= 0 && load > 0) {
-				if(deliveries[d] <= load) {
+			while (d >= 0 && load > 0) {
+				if (deliveries[d] <= load) {
 					load -= deliveries[d];
 					deliveries[d] = 0;
 					d--;
-				}
-				else {
+				} else {
 					deliveries[d] -= load;
 					load = 0;
 				}
 			}
-			
+
 			// 수거
 			load = 0;
-			while(p >= 0 && load < cap) {
+			while (p >= 0 && load < cap) {
 				if (pickups[p] <= cap - load) {
 					load += pickups[p];
 					pickups[p] = 0;
 					p--;
-				}
-				else {
+				} else {
 					pickups[p] -= cap - load;
 					load = cap;
 				}
