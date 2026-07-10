@@ -41,7 +41,9 @@ public class PG42627 {
 			// 작업이 끝나는 시간으로 시간 갱신
 			if (pq.isEmpty()) {
 				time = jobs[idx][0];
-			} else {
+			}
+			// 요청받은 작업이 있는 경우
+			else {
 				int[] job = pq.poll();
 				time += job[1];
 				sum += time - job[0];
