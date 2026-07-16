@@ -15,40 +15,44 @@ public class PG60057 {
 
 	public static int solution(String s) {
 		int minLength = s.length();
-		
+
 		if (s.length() == 1)
-		    return 1;
+			return 1;
 
 		for (int unit = 1; unit <= s.length() / 2; unit++) {
 			StringBuilder sb = new StringBuilder();
+			
 			String prevString = s.substring(0, unit);
 			int cnt = 1;
-			
+
 			// 단위 문자열 처리
 			for (int i = unit; i < s.length(); i += unit) {
 				int end = Math.min(i + unit, s.length());
 				String curString = s.substring(i, end);
-				
+
 				if (prevString.equals(curString)) {
 					cnt++;
 				} else {
-					if (cnt >= 2) {
-						sb.append(cnt).append(prevString);
-						cnt = 1;
-					} else {
-						sb.append(prevString);
+					// 반복 문자열 추가
+					if (cnt > 1) {
+						sb.append(cnt);
 					}
+					sb.append(prevString);
+					
+					// 문자열 갱신
+					prevString = curString;
+					cnt = 1;
 				}
-				prevString = curString;
 			}
-			
+
 			// 남은 문자열 처리
-		    if (cnt > 1)
-		        sb.append(cnt);
-		    sb.append(prevString);
-		    
-		    // 최소 길이 계산
-		    minLength = Math.min(minLength, sb.length());
+			if (cnt > 1) {
+				sb.append(cnt);
+			}
+			sb.append(prevString);
+
+			// 최소 길이 계산
+			minLength = Math.min(minLength, sb.length());
 		}
 		return minLength;
 	}
