@@ -11,37 +11,32 @@ public class PG131704 {
 		System.out.println(solution(new int[] { 4, 3, 1, 2, 5 }));
 		System.out.println(solution(new int[] { 5, 4, 3, 2, 1 }));
 	}
-
 	public static int solution(int[] order) {
 		Stack<Integer> stack = new Stack<>();
 		int truckIdx = 0;
 		int conveyIdx = 1;
 
-		while (conveyIdx <= order.length) {
-			if (!stack.isEmpty()) {
-				if (order[truckIdx] == stack.peek()) {
-					stack.pop();
-					truckIdx++;
-				}
+		for (int target : order) {
+			// 컨베이어 벨트에 실어야할 상자가 있는 경우
+			while (conveyIdx < target) {
+				stack.push(conveyIdx++);
 			}
 
-			if (order[truckIdx] == conveyIdx) {
+			// 트럭에 바로 싣기
+			if (conveyIdx == target) {
 				truckIdx++;
 				conveyIdx++;
-			} else {
-				stack.add(conveyIdx++);
 			}
-		}
-
-		while (!stack.isEmpty()) {
-			if (order[truckIdx] == stack.peek()) {
+			// 보조 벨트에서 싣기
+			else if (!stack.isEmpty() && stack.peek() == target) {
 				stack.pop();
 				truckIdx++;
-			} else {
+			}
+			// 실을 상자가 없을 경우
+			else {
 				break;
 			}
 		}
-
 		return truckIdx;
 	}
 }
