@@ -22,7 +22,7 @@ public class PG148653 {
 			} else if (digit > 5) {
 				answer += 10 - digit;
 				storey++;
-			} else { // digit == 5
+			} else { 
 				if (storey % 10 >= 5) {
 					answer += 5;
 					storey++;
