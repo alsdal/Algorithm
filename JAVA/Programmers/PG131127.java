@@ -46,6 +46,7 @@ public class PG131127 {
 			String add = discount[i];
 			dcMap.put(add, dcMap.getOrDefault(add, 0) + 1);
 
+			// 일치할 경우
 			if (wantMap.equals(dcMap)) {
 				answer++;
 			}
