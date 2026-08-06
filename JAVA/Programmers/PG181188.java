@@ -16,6 +16,7 @@ public class PG181188 {
 	public static int solution(int[][] targets) {
 		int answer = 0;
 
+		// 끝나느 시간 순 정렬
 		Arrays.sort(targets, new Comparator<int[]>() {
 			@Override
 			public int compare(int[] a, int[] b) {
@@ -25,6 +26,7 @@ public class PG181188 {
 
 		int last = -1;
 
+		// 오른쪽 끝에 맞춰 요격
 		for (int[] target : targets) {
 			int start = target[0];
 			int end = target[1];
