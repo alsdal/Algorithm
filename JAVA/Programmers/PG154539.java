@@ -22,16 +22,19 @@ public class PG154539 {
 
 	public static int[] solution(int[] numbers) {
 		int[] answer = new int[numbers.length];
+		
+		// -1로 초기화
 		Arrays.fill(answer, -1);
 		
 		Stack<Integer> stack = new Stack<>();
 		
 		for (int i = 0; i < numbers.length; i++) {
+			// 정해지지 않은 인덱스에 대해 큰 수 저장
 			while(!stack.isEmpty() && numbers[stack.peek()] < numbers[i]) {
 				int idx = stack.pop();
 				answer[idx] = numbers[i];
 			}
-			
+			// 현재 자리 인덱스 저장
 			stack.push(i);	
 		}
 		
