@@ -14,10 +14,11 @@ public class PG70129 {
 
 	public static int[] solution(String s) {
 		int[] answer = {};
-		int zeroCnt = 0;
-		int convertCnt = 0;
+		int zeroCnt = 0; // 제거한 0의 개수
+		int convertCnt = 0; // 변환 횟수
+
 		while (!s.equals("1")) {
-			int oneCnt = 0;
+			int oneCnt = 0; // 남은 1의 개수
 			for (int i = 0; i < s.length(); i++) {
 				if (s.charAt(i) == '1') {
 					oneCnt++;
@@ -25,7 +26,8 @@ public class PG70129 {
 					zeroCnt++;
 				}
 			}
-
+			
+			// 이진 변환
 			s = Integer.toBinaryString(oneCnt);
 			convertCnt++;
 		}
