@@ -48,6 +48,7 @@ public class PG17686 {
 				numberEnd++;
 			}
 
+			// head, number 분리
 			String head = file.substring(0, numberStart);
 			int number = Integer.parseInt(file.substring(numberStart, numberEnd));
 
@@ -63,6 +64,7 @@ public class PG17686 {
 					return headCompare;
 				}
 
+				// head 같을 경우 number 비교
 				return a.number - b.number;
 			}
 		});
