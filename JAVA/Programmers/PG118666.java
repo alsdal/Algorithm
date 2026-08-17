@@ -14,8 +14,6 @@ public class PG118666 {
 	}
 
 	public static String solution(String[] survey, int[] choices) {
-		String answer = "";
-
 		// 성격 유형 입력
 		Map<Character, Integer> map = new HashMap<>();
 		map.put('R', 0);
@@ -40,7 +38,6 @@ public class PG118666 {
 			}
 
 		}
-		System.out.println(map.entrySet());
 
 		// 성격 유형 판단
 		StringBuilder sb = new StringBuilder();
