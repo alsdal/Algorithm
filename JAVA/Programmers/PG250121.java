@@ -27,12 +27,14 @@ public class PG250121 {
 
 		List<int[]> answer = new ArrayList<>();
 
+		// 날짜 조건 거르기
 		for (int[] d : data) {
 			if (d[extIdx] < val_ext) {
 				answer.add(d);
 			}
 		}
 
+		// 인덱스 기준 정렬
 		Collections.sort(answer, new Comparator<int[]>() {
 			@Override
 			public int compare(int[] a, int[] b) {
@@ -43,6 +45,7 @@ public class PG250121 {
 		return answer.toArray(new int[answer.size()][]);
 	}
 
+	// 인덱스로 변환
 	public static int getIdx(String s) {
 		if (s.equals("code")) {
 			return 0;
