@@ -15,11 +15,16 @@ public class PG159994 {
 		int idx2 = 0;
 
 		for (String word : goal) {
+			// 첫번째 카드 뭉치 탐색
 			if (idx1 < cards1.length && word.equals(cards1[idx1])) {
 				idx1++;
-			} else if (idx2 < cards2.length && word.equals(cards2[idx2])) {
+			}
+			// 두번째 카드 뭉치 탐색
+			else if (idx2 < cards2.length && word.equals(cards2[idx2])) {
 				idx2++;
-			} else {
+			}
+			// 문장을 이어 만들 단어가 없는 경우
+			else {
 				return "No";
 			}
 		}
