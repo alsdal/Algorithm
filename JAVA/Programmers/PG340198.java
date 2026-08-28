@@ -25,7 +25,6 @@ public class PG340198 {
 			// 돗자리의 시작 위치
 			for (int x = 0; x <= park.length - size; x++) {
 				for (int y = 0; y <= park[0].length - size; y++) {
-
 					if (canPlace(x, y, size, park)) {
 						return size;
 					}
@@ -44,7 +43,6 @@ public class PG340198 {
 				}
 			}
 		}
-
 		return true;
 	}
 }
