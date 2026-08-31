@@ -14,7 +14,10 @@ public class PG147355 {
 		int len = p.length();
 
 		for (int i = 0; i <= t.length() - len; i++) {
+			// 문자열 자르기
 			String s = t.substring(i, i + len);
+
+			// 크기 작은 문자열 개수 계산
 			long num = Long.parseLong(s);
 			if (num <= Long.parseLong(p)) {
 				answer++;
