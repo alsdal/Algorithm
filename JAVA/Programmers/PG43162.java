@@ -30,14 +30,14 @@ public class PG43162 {
 	public static void bfs(int v, int[][] computers) {
 		Queue<Integer> queue = new LinkedList<>();
 		visited[v] = true;
-		queue.add(v);
+		queue.offer(v);
 
 		while (!queue.isEmpty()) {
 			int cur = queue.poll();
 			for (int i = 0; i < computers[cur].length; i++) {
 				if (!visited[i] && computers[cur][i] == 1) {
 					visited[i] = true;
-					queue.add(i);
+					queue.offer(i);
 				}
 			}
 		}
