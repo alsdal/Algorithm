@@ -31,8 +31,8 @@ public class PG1844 {
 
 	public static int solution(int[][] maps) {
 		int answer = 0;
-		n = maps.length;
-		m = maps[0].length;
+		n = maps.length; // 맵 세로 길이
+		m = maps[0].length; // 맵 가로 길이
 
 		answer = bfs(maps);
 		return answer;
@@ -40,8 +40,9 @@ public class PG1844 {
 
 	public static int bfs(int[][] maps) {
 		boolean[][] visited = new boolean[n][m];
-
 		Queue<Node> queue = new LinkedList<>();
+
+		// 시작 위치 초기화
 		queue.offer(new Node(0, 0, 1));
 		visited[0][0] = true;
 
@@ -50,10 +51,12 @@ public class PG1844 {
 			int x = cur.x;
 			int y = cur.y;
 
+			// 도착지 도달한 경우
 			if (x == m - 1 && y == n - 1) {
 				return cur.dist;
 			}
 
+			// 4방향 탐색
 			for (int i = 0; i < 4; i++) {
 				int nx = x + dx[i];
 				int ny = y + dy[i];
