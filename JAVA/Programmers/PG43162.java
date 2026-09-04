@@ -19,6 +19,7 @@ public class PG43162 {
 		int answer = 0;
 		visited = new boolean[n];
 		for (int i = 0; i < n; i++) {
+			// 방문하지 않은 노드인 경우에만 숫자 세기
 			if (!visited[i]) {
 				bfs(i, computers);
 				answer++;
@@ -29,9 +30,11 @@ public class PG43162 {
 
 	public static void bfs(int v, int[][] computers) {
 		Queue<Integer> queue = new LinkedList<>();
+		// 시작 노드 초기화
 		visited[v] = true;
 		queue.offer(v);
 
+		// 인접리스트 bfs 탐색
 		while (!queue.isEmpty()) {
 			int cur = queue.poll();
 			for (int i = 0; i < computers[cur].length; i++) {
