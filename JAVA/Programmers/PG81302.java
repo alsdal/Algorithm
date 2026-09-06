@@ -34,6 +34,9 @@ public class PG81302 {
 						}
 					}
 				}
+				if (!isValid) {
+					break;
+				}
 			}
 
 			if (isValid) {
