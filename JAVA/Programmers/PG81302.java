@@ -27,6 +27,7 @@ public class PG81302 {
 			boolean isValid = true;
 			for (int i = 0; i < places[t].length; i++) {
 				for (int j = 0; j < places[t][i].length(); j++) {
+					// 사람인 경우 bfs 탐색
 					if (places[t][i].charAt(j) == 'P') {
 						if (!bfs(i, j, places[t])) {
 							isValid = false;
@@ -38,14 +39,13 @@ public class PG81302 {
 					break;
 				}
 			}
-
+			// 결과에 따라 정답 추가
 			if (isValid) {
 				answer[t] = 1;
 			} else {
 				answer[t] = 0;
 			}
 		}
-
 		return answer;
 	}
 
@@ -53,15 +53,18 @@ public class PG81302 {
 		boolean[][] visited = new boolean[place.length][place[0].length()];
 		Queue<int[]> queue = new LinkedList<>();
 
-		visited[x][y] = true;
+		// 시작점 초기화
 		queue.offer(new int[] { x, y, 0 });
+		visited[x][y] = true;
 
+		// 좌표, 거리 입력하여 탐색
 		while (!queue.isEmpty()) {
 			int[] cur = queue.poll();
 			int cx = cur[0];
 			int cy = cur[1];
 			int dist = cur[2];
 
+			// 거리가 2이면 탐색 종료
 			if (dist == 2) {
 				continue;
 			}
@@ -70,18 +73,22 @@ public class PG81302 {
 				int nx = cx + dx[i];
 				int ny = cy + dy[i];
 
+				// 경계값 검사
 				if (nx < 0 || ny < 0 || nx >= 5 || ny >= 5) {
 					continue;
 				}
 
+				// 방문 검사
 				if (visited[nx][ny]) {
 					continue;
 				}
 
+				// 벽인 경우
 				if (place[nx].charAt(ny) == 'X') {
 					continue;
 				}
 
+				// 사람인 경우
 				if (place[nx].charAt(ny) == 'P') {
 					return false;
 				}
@@ -93,5 +100,4 @@ public class PG81302 {
 		}
 		return true;
 	}
-
 }
