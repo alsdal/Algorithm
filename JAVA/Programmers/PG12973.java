@@ -8,10 +8,10 @@ import java.util.Stack;
 
 public class PG12973 {
 	public static void main(String[] args) {
-
+		System.out.println(solution("baabaa"));
 	}
 
-	public int solution(String s) {
+	public static int solution(String s) {
 		int answer = -1;
 		Stack<Character> stack = new Stack<>();
 
@@ -24,7 +24,6 @@ public class PG12973 {
 					continue;
 				}
 			}
-			
 			stack.push(c);
 		}
 
