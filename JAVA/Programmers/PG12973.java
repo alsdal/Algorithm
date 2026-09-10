@@ -19,14 +19,17 @@ public class PG12973 {
 			char c = s.charAt(i);
 
 			if (!stack.isEmpty()) {
+				// 짝지어 제거
 				if (stack.peek() == c) {
 					stack.pop();
 					continue;
 				}
 			}
+			// 가장 끝 글자 스택에 추가
 			stack.push(c);
 		}
 
+		// 모두 제거 된 경우
 		if (stack.isEmpty()) {
 			answer = 1;
 		} else {
