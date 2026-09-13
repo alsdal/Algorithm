@@ -17,8 +17,6 @@ public class PG12981 {
 	}
 
 	public static int[] solution(int n, String[] words) {
-		int[] answer = new int[2];
-
 		Set<String> set = new HashSet<>();
 		set.add(words[0]);
 
