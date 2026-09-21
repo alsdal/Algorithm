@@ -18,15 +18,17 @@ public class PG64065 {
 	}
 
 	public static int[] solution(String s) {
+		// 문자열 분리
 		s = s.substring(2, s.length() - 2);
 		String[] groups = s.split("\\},\\{");
 
+		// 숫자 문자열 배열로 변환
 		String[][] numbers = new String[groups.length][];
-
 		for (int i = 0; i < groups.length; i++) {
 			numbers[i] = groups[i].split(",");
 		}
 
+		// 원소 개수 적은 순서로 정렬
 		Arrays.sort(numbers, new Comparator<String[]>() {
 			@Override
 			public int compare(String[] a, String[] b) {
@@ -41,6 +43,7 @@ public class PG64065 {
 		for (String[] group : numbers) {
 			for (String str : group) {
 				int num = Integer.parseInt(str);
+				// 처음 등장한 숫자이면 정답 배열에 추가
 				if (set.add(num)) {
 					answer[idx++] = num;
 				}
