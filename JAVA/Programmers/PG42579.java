@@ -7,7 +7,16 @@
 import java.util.*;
 
 public class PG42579 {
-	public int[] solution(String[] genres, int[] plays) {
+	public static void main(String[] args) {
+		int[] arr = solution(new String[] { "classic", "pop", "classic", "classic", "pop" },
+				new int[] { 500, 600, 150, 800, 2500 });
+
+		for (int i : arr) {
+			System.out.println(i);
+		}
+	}
+
+	public static int[] solution(String[] genres, int[] plays) {
 		int n = genres.length;
 
 		Map<String, Integer> genrePlays = new HashMap<>();
