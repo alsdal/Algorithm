@@ -15,10 +15,12 @@ public class PG42577 {
 	public static boolean solution(String[] phone_book) {
 		Set<String> set = new HashSet<>();
 
+		// 전화번호 저장
 		for (String number : phone_book) {
 			set.add(number);
 		}
 
+		// 접두어 확인
 		for (String number : phone_book) {
 			for (int i = 1; i < number.length(); i++) {
 				String prefix = number.substring(0, i);
