@@ -4,9 +4,7 @@
 링크 : https://school.programmers.co.kr/learn/courses/30/lessons/92341
 */
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
@@ -23,55 +21,54 @@ public class PG92341 {
 	}
 
 	public static int[] solution(int[] fees, String[] records) {
-		Map<Integer, Integer> map = new HashMap<>();
+		Map<Integer, Integer> entranceTime = new HashMap<>();
 		Map<Integer, Integer> accTime = new TreeMap<>();
-		List<int[]> list = new ArrayList<>();
 
-		// 입출차 기록 입력
-		for (String s : records) {
-			StringTokenizer st = new StringTokenizer(s);
+		for (String record : records) {
+			StringTokenizer st = new StringTokenizer(record);
 
+			// 주차 내역 입력
 			String time = st.nextToken();
 			int carNum = Integer.parseInt(st.nextToken());
 			String type = st.nextToken();
 
-			// 시간 변환
-			String[] hm = time.split(":");
-			int h = Integer.parseInt(hm[0]);
-			int m = Integer.parseInt(hm[1]);
-			int minutes = h * 60 + m;
-
-			// 차량 주차 시간 입력
+			// 입차시 기록 입력, 출차시 누적 주차 시간 계산
 			if (type.equals("IN")) {
-				map.put(carNum, minutes);
+				entranceTime.put(carNum, convertTime(time));
 			} else {
-				int inTime = map.remove(carNum);
-				accTime.put(carNum, minutes - inTime + accTime.getOrDefault(carNum, 0));
+				int inTime = entranceTime.remove(carNum);
+				int outTime = convertTime(time);
+				accTime.put(carNum, accTime.getOrDefault(carNum, 0) + outTime - inTime);
 			}
-
 		}
 
-		// 출차 내역 없는 차량 주차 시간 더하기
-		for (int carNum : map.keySet()) {
-			accTime.put(carNum, 1439 - map.get(carNum) + accTime.getOrDefault(carNum, 0));
+		// 주차장에 남아있는 차량 시간 계산
+		for (int carNum : entranceTime.keySet()) {
+			accTime.put(carNum, accTime.getOrDefault(carNum, 0) + 1439 - entranceTime.get(carNum));
 		}
 
-		// 주차 요금 계산
+		// 요금 계산
+		int[] answer = new int[accTime.size()];
+		int idx = 0;
 		for (int carNum : accTime.keySet()) {
-			int parkTime = accTime.get(carNum);
-			int fee = fees[1];
-			if (parkTime > fees[0]) {
-				fee += Math.ceil((double) (parkTime - fees[0]) / fees[2]) * fees[3];
-			}
-			list.add(new int[] { carNum, fee });
-		}
-
-		// list -> arr 변환
-		int[] answer = new int[list.size()];
-		for (int i = 0; i < list.size(); i++) {
-			answer[i] = list.get(i)[1];
+			answer[idx++] = calFee(accTime.get(carNum), fees);
 		}
 
 		return answer;
+	}
+
+	public static int convertTime(String t) {
+		String[] hhmm = t.split(":");
+		int h = Integer.parseInt(hhmm[0]);
+		int m = Integer.parseInt(hhmm[1]);
+		return h * 60 + m;
+	}
+
+	public static int calFee(int t, int[] fees) {
+		if (t <= fees[0]) {
+			return fees[1];
+		} else {
+			return fees[1] + (int) Math.ceil((double) (t - fees[0]) / fees[2]) * fees[3];
+		}
 	}
 }
