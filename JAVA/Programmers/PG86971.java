@@ -33,7 +33,6 @@ public class PG86971 {
 		int answer = n;
 
 		// 전선 하나씩 끊어서 bfs
-
 		for (int[] wire : wires) {
 			int count = bfs(wire, graph, n);
 			int diff = Math.abs(count - (n - count));
