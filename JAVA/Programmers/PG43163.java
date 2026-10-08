@@ -38,7 +38,7 @@ public class PG43163 {
 
 		while (!queue.isEmpty()) {
 			Node cur = queue.poll();
-
+			// target 단어에 도달한 경우 변환 횟수 반환
 			if (cur.word.equals(target)) {
 				return cur.cnt;
 			}
@@ -48,6 +48,7 @@ public class PG43163 {
 					continue;
 				}
 
+				// 한 글자 차이인 단어에 대해 bfs 수행
 				if (canChange(cur.word, words[i])) {
 					queue.offer(new Node(words[i], cur.cnt + 1));
 					visited[i] = true;
