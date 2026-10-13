@@ -4,7 +4,9 @@
 링크 : https://school.programmers.co.kr/learn/courses/30/lessons/42895
 */
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PG42895 {
@@ -14,34 +16,35 @@ public class PG42895 {
 	}
 
 	public static int solution(int N, int number) {
-		Set<Integer>[] dp = new HashSet[9];
-		for (int i = 1; i < dp.length; i++) {
-			dp[i] = new HashSet<>();
+		List<Set<Integer>> dp = new ArrayList<>();
+		for (int i = 0; i <= 8; i++) {
+			dp.add(new HashSet<>());
 		}
 
-		for (int i = 1; i < dp.length; i++) {
-			// 이어 붙인 수
-			dp[i].add(Integer.parseInt(String.valueOf(N).repeat(i)));
+		int repeated = 0;
+		for (int i = 1; i <= 8; i++) {
+			repeated = repeated * 10 + N;
+			dp.get(i).add(repeated);
 
-			// 조합 경우의 수 계산
 			for (int j = 1; j < i; j++) {
-				for (int a : dp[j]) {
-					for (int b : dp[i - j]) {
-						dp[i].add(a + b);
-						dp[i].add(a - b);
-						dp[i].add(a * b);
+				for (int a : dp.get(j)) {
+					for (int b : dp.get(i - j)) {
+						dp.get(i).add(a + b);
+						dp.get(i).add(a - b);
+						dp.get(i).add(a * b);
+
 						if (b != 0) {
-							dp[i].add(a / b);
+							dp.get(i).add(a / b);
 						}
 					}
 				}
 			}
 
-			// 정답 있으면 종료
-			if (dp[i].contains(number)) {
+			if (dp.get(i).contains(number)) {
 				return i;
 			}
 		}
+
 		return -1;
 	}
 }
