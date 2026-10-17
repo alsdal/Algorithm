@@ -11,38 +11,40 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ1654 {
-	public static void main (String args[]) throws IOException {
+	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		int K = Integer.parseInt(st.nextToken()); // 가지고 있는 랜선의 개수
-		int N = Integer.parseInt(st.nextToken()); // 필요한 랜선의 개수
-		int[] cables = new int[K]; // 가지고 있는 랜선
-		
-		int maxCable = 0;
+
+		int K = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken());
+
+		long left = 1;
+		long right = 0;
+		int[] lines = new int[K];
+
 		for (int i = 0; i < K; i++) {
-			cables[i] = Integer.parseInt(br.readLine());
-			maxCable = Math.max(maxCable, cables[i]);
+			int line = Integer.parseInt(br.readLine());
+			lines[i] = line;
+			right = Math.max(right, line);
 		}
-		
-		long res = 0;
-		long s = 1;
-		long e = maxCable;
-		
-		while(s <= e) {
-			long m = (s + e) / 2;
-			long cnt = 0; // 랜선의 개수
-			for (int i = 0; i < K; i++) {
-				cnt += cables[i] / m;
+
+		long answer = 0;
+		while (left <= right) {
+			long mid = (left + right) / 2;
+			long cnt = 0;
+
+			for (int len : lines) {
+				cnt += len / mid;
 			}
-			
-			if(cnt >= N) {
-				res = m;
-				s = m + 1;
+
+			if (cnt >= N) {
+				answer = mid;
+				left = mid + 1;
 			} else {
-				e = m - 1;
+				right = mid - 1;
 			}
 		}
-		System.out.println(res);
+
+		System.out.println(answer);
 	}
 }
