@@ -17,17 +17,15 @@ public class PG17682 {
 		int score = 0;
 		for (int i = 0; i < dartResult.length(); i++) {
 			char c = dartResult.charAt(i);
-
-			// 숫자
+			// 점수
 			if (Character.isDigit(c)) {
-				// 10 처리
+				// 숫자 10 예외 처리
 				if (c == '1' && i + 1 < dartResult.length() && dartResult.charAt(i + 1) == '0') {
 					score = 10;
 					i++;
 				} else {
 					score = c - '0';
 				}
-
 			}
 
 			// 보너스
@@ -46,8 +44,9 @@ public class PG17682 {
 			else if (c == '*' || c == '#') {
 				int last = scores.size() - 1;
 				if (c == '*') {
+					// 현재 점수 2배
 					scores.set(last, scores.get(last) * 2);
-
+					// 직전 점수 2배
 					if (last > 0) {
 						scores.set(last - 1, scores.get(last - 1) * 2);
 					}
@@ -58,10 +57,10 @@ public class PG17682 {
 		}
 
 		int answer = 0;
-
 		for (int i : scores) {
 			answer += i;
 		}
+
 		return answer;
 	}
 }
