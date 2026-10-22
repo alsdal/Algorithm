@@ -6,15 +6,14 @@
 
 public class PG340212 {
 	public int solution(int[] diffs, int[] times, long limit) {
-		int answer = 0;
-
-		// 숙련도 최소, 최대
+		// 숙련도 최소, 최대 설정
 		long left = 1;
 		long right = 0;
 		for (int diff : diffs) {
 			right = Math.max(right, diff);
 		}
-
+		
+		int answer = 0;
 		// 숙련도 기준 이분탐색
 		while (left <= right) {
 			long mid = (left + right) / 2;
@@ -30,6 +29,7 @@ public class PG340212 {
 			}
 
 			// 이분탐색 범위 조정
+			
 			if (time <= limit) {
 				answer = (int) mid;
 				right = mid - 1;
