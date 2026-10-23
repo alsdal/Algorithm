@@ -15,10 +15,10 @@ public class PG42885 {
 	public static int solution(int[] people, int limit) {
 		int answer = 0;
 
+		Arrays.sort(people);
+
 		int left = 0;
 		int right = people.length - 1;
-
-		Arrays.sort(people);
 
 		while (left <= right) {
 			if (people[left] + people[right] <= limit) {
@@ -27,6 +27,7 @@ public class PG42885 {
 			answer++;
 			right--;
 		}
+
 		return answer;
 	}
 }
