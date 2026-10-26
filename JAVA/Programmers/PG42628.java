@@ -24,16 +24,18 @@ public class PG42628 {
 		PriorityQueue<Integer> minPQ = new PriorityQueue<>();
 		PriorityQueue<Integer> maxPQ = new PriorityQueue<>(Collections.reverseOrder());
 
-		for (String s : operations) {
-			String[] str = s.split(" ");
-			String cmd = str[0];
-			int num = Integer.parseInt(str[1]);
+		for (String operation : operations) {
+			// 명령어 입력
+			String[] s = operation.split(" ");
+			String command = s[0];
+			int num = Integer.parseInt(s[1]);
 
 			// 삽입
-			if (cmd.equals("I")) {
+			if (command.equals("I")) {
 				minPQ.offer(num);
 				maxPQ.offer(num);
 			}
+
 			// 삭제
 			else {
 				if (minPQ.isEmpty()) {
@@ -45,6 +47,7 @@ public class PG42628 {
 					int max = maxPQ.poll();
 					minPQ.remove(max);
 				}
+
 				// 최솟값 삭제
 				else {
 					int min = minPQ.poll();
@@ -52,7 +55,6 @@ public class PG42628 {
 				}
 			}
 		}
-		// 결과 저장
 		if (minPQ.isEmpty()) {
 			return new int[] { 0, 0 };
 		}
