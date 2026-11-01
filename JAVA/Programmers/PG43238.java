@@ -12,22 +12,23 @@ public class PG43238 {
 	}
 
 	public static long solution(int n, int[] times) {
+		// 심사 시간순 정렬
 		Arrays.sort(times);
 
 		long left = times[0];
-		long right = (long) n * times[times.length - 1];
+		long right = (long) times[times.length - 1] * n;
 
 		// 시간 기준 이분탐색
 		while (left < right) {
 			long mid = (left + right) / 2;
 			long cnt = 0;
 
-			// 심사 가능한 사람 수 계산
+			// 심사할 수 있는 사람의 수 계산
 			for (int time : times) {
 				cnt += mid / time;
 			}
 
-			// 범위 조정
+			// lower bound 이분탐색
 			if (cnt >= n) {
 				right = mid;
 			} else {
