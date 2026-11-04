@@ -13,23 +13,23 @@ public class PG42577 {
 	}
 
 	public static boolean solution(String[] phone_book) {
-		Set<String> set = new HashSet<>();
+		boolean answer = true;
 
-		// 전화번호 저장
+		// set에 전화번호 저장
+		Set<String> set = new HashSet<>();
 		for (String number : phone_book) {
 			set.add(number);
 		}
 
-		// 접두어 확인
+		// 접두어 탐색
 		for (String number : phone_book) {
 			for (int i = 1; i < number.length(); i++) {
 				String prefix = number.substring(0, i);
 				if (set.contains(prefix)) {
-					return false;
+					answer = false;
 				}
 			}
 		}
-
-		return true;
+		return answer;
 	}
 }
