@@ -9,22 +9,24 @@ public class PG87946 {
 		System.out.println(solution(80, new int[][] { { 80, 20 }, { 50, 40 }, { 30, 10 } }));
 	}
 
-	static boolean[] visited;
 	static int answer = 0;
+	static boolean[] visited;
 
 	public static int solution(int k, int[][] dungeons) {
 		visited = new boolean[dungeons.length];
-		dfs(k, dungeons, 0);
+
+		dfs(k, 0, dungeons);
 
 		return answer;
 	}
 
-	public static void dfs(int k, int[][] dungeons, int cnt) {
-		answer = Math.max(answer, cnt);
+	public static void dfs(int k, int depth, int[][] dungeons) {
+		answer = Math.max(answer, depth);
+
 		for (int i = 0; i < dungeons.length; i++) {
-			if (!visited[i] && k >= dungeons[i][0]) {
+			if (k >= dungeons[i][0] && !visited[i]) {
 				visited[i] = true;
-				dfs(k - dungeons[i][1], dungeons, cnt + 1);
+				dfs(k - dungeons[i][1], depth + 1, dungeons);
 				visited[i] = false;
 			}
 		}
