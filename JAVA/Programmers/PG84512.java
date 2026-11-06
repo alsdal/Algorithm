@@ -20,20 +20,21 @@ public class PG84512 {
 
 	public static int solution(String word) {
 		dfs("");
+
 		return list.indexOf(word) + 1;
 	}
 
-	public static void dfs(String str) {
-		if (str.length() > 5) {
+	public static void dfs(String s) {
+		if (s.length() > 5) {
 			return;
 		}
 
-		if (!str.equals("")) {
-			list.add(str);
+		if (!s.equals("")) {
+			list.add(s);
 		}
 
 		for (String v : vowels) {
-			dfs(str + v);
+			dfs(s + v);
 		}
 	}
 }
