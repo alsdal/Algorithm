@@ -20,7 +20,6 @@ public class PG84512 {
 
 	public static int solution(String word) {
 		dfs("");
-
 		return list.indexOf(word) + 1;
 	}
 
