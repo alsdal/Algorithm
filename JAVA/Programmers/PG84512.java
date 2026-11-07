@@ -15,12 +15,18 @@ public class PG84512 {
 		System.out.println(solution("EIO"));
 	}
 
-	static List<String> list = new ArrayList<>();
+	// 모음 사전
+	static List<String> dictionary = new ArrayList<>();
+
+	// 모음 순서대로 저장
 	static String[] vowels = { "A", "E", "I", "O", "U" };
 
 	public static int solution(String word) {
+		// dfs로 사전순 단어 저장
 		dfs("");
-		return list.indexOf(word) + 1;
+
+		// 인덱스 출력
+		return dictionary.indexOf(word) + 1;
 	}
 
 	public static void dfs(String s) {
@@ -28,10 +34,12 @@ public class PG84512 {
 			return;
 		}
 
+		// 현재 단어 저장
 		if (!s.equals("")) {
-			list.add(s);
+			dictionary.add(s);
 		}
 
+		// 모음 순서대로 붙이기
 		for (String v : vowels) {
 			dfs(s + v);
 		}
