@@ -21,9 +21,12 @@ public class PG87946 {
 	}
 
 	public static void dfs(int k, int depth, int[][] dungeons) {
+		// 최대 탐험 던전 수 저장
 		answer = Math.max(answer, depth);
 
+		// 모든 경우 백트래킹
 		for (int i = 0; i < dungeons.length; i++) {
+			// 현재 피로도로 탐험 가능한 던전인 경우
 			if (k >= dungeons[i][0] && !visited[i]) {
 				visited[i] = true;
 				dfs(k - dungeons[i][1], depth + 1, dungeons);
