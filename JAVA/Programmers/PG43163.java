@@ -13,8 +13,8 @@ public class PG43163 {
 	}
 
 	static class Node {
-		String word;
-		int cnt;
+		String word; // 단어
+		int cnt; // 변환 횟수
 
 		Node(String word, int cnt) {
 			this.word = word;
@@ -47,22 +47,22 @@ public class PG43163 {
 				if (visited[i]) {
 					continue;
 				}
-
-				// 한 글자 차이인 단어에 대해 bfs 수행
+				// 한 글자 차이라면 bfs 수행
 				if (canChange(cur.word, words[i])) {
 					queue.offer(new Node(words[i], cur.cnt + 1));
 					visited[i] = true;
 				}
 			}
 		}
-
 		return 0;
 	}
 
+	// 한 글자 차이인지 판별
 	public static boolean canChange(String curWord, String nextWord) {
 		int n = curWord.length();
 		int diff = 0;
 
+		// 다른 글자 개수 세기
 		for (int i = 0; i < n; i++) {
 			if (curWord.charAt(i) != nextWord.charAt(i)) {
 				diff++;
