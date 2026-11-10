@@ -8,40 +8,39 @@ import java.util.*;
 
 public class PG42587 {
 	public int solution(int[] priorities, int location) {
-		int answer = 0;
-
 		Queue<Integer> queue = new LinkedList<>();
 
 		for (int i = 0; i < priorities.length; i++) {
 			queue.offer(i);
 		}
 
-		int cnt = 0;
+		int order = 0;
 
 		while (!queue.isEmpty()) {
-			int cur = queue.poll();
+			int curIdx = queue.poll();
+			int priority = priorities[curIdx];
 			boolean hasHigher = false;
 
-			// 대기중인 우선순위가 높은 프로세스 확인
+			// 현재 프로세스보다 높은 프로세스 있는지 확인
 			for (int idx : queue) {
-				if (priorities[idx] > priorities[cur]) {
+				if (priority < priorities[idx]) {
 					hasHigher = true;
 					break;
 				}
 			}
 
-			// 높은 프로세스 있다면 현재 프로세스 큐 뒤에 넣기
+			// 현재 프로세스의 우선순위가 낮은 경우 큐에 다시 넣기
 			if (hasHigher) {
-				queue.offer(cur);
-				continue;
+				queue.offer(curIdx);
 			}
-
-			cnt++;
-
-			if (cur == location) {
-				return cnt;
+			// 현재 프로세스 실행
+			else {
+				order++;
+				// 실행된 프로세스가 구하고자 하는 프로세스인 경우
+				if (curIdx == location) {
+					return order;
+				}
 			}
-
 		}
 
 		return -1;
