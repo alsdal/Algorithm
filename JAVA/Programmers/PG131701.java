@@ -11,17 +11,18 @@ public class PG131701 {
 	public static void main(String[] args) {
 		System.out.println(solution(new int[] { 7, 9, 1, 1, 4 }));
 	}
+
 	public static int solution(int[] elements) {
 		int n = elements.length;
 
-		// 원형 배열 처리
-		int[] arr = new int[2 * n];
+		// 원형 배열 생성
+		int[] arr = new int[n * 2];
 		for (int i = 0; i < n; i++) {
 			arr[i] = elements[i];
 			arr[i + n] = elements[i];
 		}
 
-		// 누적합 저장
+		// 누적합 계산
 		int[] pfx = new int[n * 2 + 1];
 		for (int i = 0; i < n * 2; i++) {
 			pfx[i + 1] = pfx[i] + arr[i];
@@ -29,14 +30,13 @@ public class PG131701 {
 
 		Set<Integer> set = new HashSet<>();
 
-		// 길이별로 부분 수열 합 추가
-		for (int len = 1; len <= n; len++) {
-			for (int s = 0; s < n; s++) {
-				int sum = pfx[s + len] - pfx[s];
+		// 부분 수열 구하기
+		for (int k = 1; k <= n; k++) {
+			for (int i = 0; i < n; i++) {
+				int sum = pfx[i + k] - pfx[i];
 				set.add(sum);
 			}
 		}
-
 		return set.size();
 	}
 }
