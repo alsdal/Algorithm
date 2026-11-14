@@ -14,15 +14,21 @@ public class PG148653 {
 		int answer = 0;
 
 		while (storey > 0) {
+			// 현재 자릿수 구하기
 			int digit = storey % 10;
 			storey /= 10;
 
+			// 자릿수 5보다 작은 경우 내림
 			if (digit < 5) {
 				answer += digit;
-			} else if (digit > 5) {
+			}
+			// 자릿수 5보다 큰 경우 올림
+			else if (digit > 5) {
 				answer += 10 - digit;
 				storey++;
-			} else { 
+			}
+			// 5인 경우 다음 자릿수 확인
+			else {
 				if (storey % 10 >= 5) {
 					answer += 5;
 					storey++;
