@@ -18,19 +18,22 @@ public class PG42626 {
 			pq.offer(scale);
 		}
 
-		int answer = 0;
-
+		int cnt = 0;
 		while (pq.peek() < K) {
+			// 음식 K 이상으로 만들 수 없는 경우
 			if (pq.size() < 2) {
 				return -1;
 			}
 
+			// 첫번째, 두번째로 맵지 않은 음식
 			int firstLow = pq.poll();
 			int secondLow = pq.poll();
+
+			// 음식 섞기
 			pq.offer(firstLow + (secondLow * 2));
-			answer++;
+			cnt++;
 		}
 
-		return answer;
+		return cnt;
 	}
 }
