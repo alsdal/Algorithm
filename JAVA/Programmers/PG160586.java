@@ -27,7 +27,6 @@ public class PG160586 {
 						continue;
 					}
 				}
-
 				map.put(c, i + 1);
 			}
 		}
