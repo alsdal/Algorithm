@@ -16,39 +16,36 @@ public class PG160586 {
 	}
 
 	public static int[] solution(String[] keymap, String[] targets) {
-		int[] answer = new int[targets.length];
-
-		// 자판 키 해싱
+		// 문자별 최소 눌러야하는 횟수 저장
 		Map<Character, Integer> map = new HashMap<>();
-		for (int i = 0; i < keymap.length; i++) {
-			for (int j = 0; j < keymap[i].length(); j++) {
-				char c = keymap[i].charAt(j);
-				// 최소 눌러야하는 횟수 저장
-				if (!map.containsKey(c)) {
-					map.put(c, j + 1);
-				} else {
-					map.put(c, Math.min(map.get(c), j + 1));
+		for (String key : keymap) {
+			for (int i = 0; i < key.length(); i++) {
+				char c = key.charAt(i);
+				// 이미 더 적은 횟수로 입력 가능한 경우
+				if (map.containsKey(c)) {
+					if (map.get(c) <= i + 1) {
+						continue;
+					}
 				}
+
+				map.put(c, i + 1);
 			}
 		}
 
-		// 자판 눌러야하는 횟수 계산
+		// 눌러야하는 횟수 계산
+		int[] answer = new int[targets.length];
 		for (int i = 0; i < targets.length; i++) {
-			int cnt = 0;
-
+			int cnt = 0; // 입력 횟수
 			for (int j = 0; j < targets[i].length(); j++) {
 				char c = targets[i].charAt(j);
-
-				// 문자열 만들 수 없는 경우
+				// 입력할 수 없는 경우 예외 처리
 				if (!map.containsKey(c)) {
 					cnt = -1;
 					break;
 				}
-
-				// 문자 입력 횟수 계산
+				// 누르는 횟수 더하기
 				cnt += map.get(c);
 			}
-
 			answer[i] = cnt;
 		}
 
