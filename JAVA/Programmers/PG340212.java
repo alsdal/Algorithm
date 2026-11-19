@@ -6,37 +6,41 @@
 
 public class PG340212 {
 	public int solution(int[] diffs, int[] times, long limit) {
-		// 숙련도 최소, 최대 설정
-		long left = 1;
-		long right = 0;
+		// 가장 어려운 난이도 구하기
+		int maxDiff = 0;
 		for (int diff : diffs) {
-			right = Math.max(right, diff);
+			maxDiff = Math.max(maxDiff, diff);
 		}
-		
-		int answer = 0;
-		// 숙련도 기준 이분탐색
-		while (left <= right) {
-			long mid = (left + right) / 2;
-			long time = 0;
 
-			// 첫번째 퍼즐 시간 계산
-			time = times[0];
+		// 최소, 최대 숙련도
+		int left = 1;
+		int right = maxDiff;
 
-			// 나머지 퍼즐 시간 계산
+		// 이분탐색
+		while (left < right) {
+			int mid = (left + right) / 2;
+
+			// 총 소요 시간 계산
+			long time = times[0];
 			for (int i = 1; i < diffs.length; i++) {
-				long repeat = diffs[i] - mid;
-				time += times[i] + (times[i] + times[i - 1]) * (Math.max(0, repeat));
+				int repeat = diffs[i] - mid;
+				// 숙련도가 난이도와 같거나 높은 경우
+				if (repeat <= 0) {
+					time += times[i];
+				}
+				// 숙련도가 난이도 보다 낮은 경우
+				else {
+					time += repeat * (times[i - 1] + times[i]) + times[i];
+				}
 			}
 
-			// 이분탐색 범위 조정
-			
+			// lower bound
 			if (time <= limit) {
-				answer = (int) mid;
-				right = mid - 1;
+				right = mid;
 			} else {
 				left = mid + 1;
 			}
 		}
-		return answer;
+		return right;
 	}
 }
