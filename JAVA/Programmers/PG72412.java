@@ -25,45 +25,47 @@ public class PG72412 {
 		}
 	}
 
-	static Map<String, List<Integer>> map = new HashMap<>();
+	static Map<String, List<Integer>> map;
 
 	public static int[] solution(String[] info, String[] query) {
+		map = new HashMap<>();
 		int[] answer = new int[query.length];
 
-		// 지원자 정보 입력
+		// 지원자 정보 파싱 후 키 생성
 		for (String s : info) {
 			String[] arr = s.split(" ");
 			makeKey(arr, 0, "");
 		}
 
-		// 점수 기준 오름차순 정렬
+		// 점수 오름차순 정렬
 		for (List<Integer> list : map.values()) {
 			Collections.sort(list);
 		}
 
-		// query 이분탐색
+		// 조건 탐색
 		for (int i = 0; i < query.length; i++) {
+			// 쿼리 조건 추출
 			String[] q = query[i].replaceAll(" and ", " ").split(" ");
 			String key = q[0] + q[1] + q[2] + q[3];
 			int score = Integer.parseInt(q[4]);
 
-			// 조건 만족하는 지원자 없는 경우
+			// 조건 만족하는 지원자 없는 경우 예외 처리
 			if (!map.containsKey(key)) {
 				answer[i] = 0;
 				continue;
 			}
 
-			// 조건 만족하는 지원자 수 구하기
+			// lower bound 이분탐색
 			List<Integer> list = map.get(key);
-			int idx = lowerBound(list, score);
-			answer[i] = list.size() - idx;
+			answer[i] = list.size() - lowerBoundIdx(list, score);
 		}
 
 		return answer;
 	}
 
-	// 입력된 지원자 정보로 16가지 경우에 대한 key 생성
+	// dfs로 키 생성
 	public static void makeKey(String[] arr, int depth, String key) {
+		// 키별 점수 저장
 		if (depth == 4) {
 			int score = Integer.parseInt(arr[4]);
 			if (!map.containsKey(key)) {
@@ -72,26 +74,23 @@ public class PG72412 {
 			map.get(key).add(score);
 			return;
 		}
-
 		makeKey(arr, depth + 1, key + arr[depth]);
 		makeKey(arr, depth + 1, key + "-");
 	}
 
-	// lowerBound 이분탐색하여 idx 반환
-	public static int lowerBound(List<Integer> list, int score) {
+	public static int lowerBoundIdx(List<Integer> list, int score) {
+		// 리스트 인덱스 최소, 최대
 		int left = 0;
-		int right = list.size() - 1;
-		int idx = list.size();
+		int right = list.size();
 
-		while (left <= right) {
+		while (left < right) {
 			int mid = (left + right) / 2;
 			if (list.get(mid) >= score) {
-				idx = mid;
-				right = mid - 1;
+				right = mid;
 			} else {
 				left = mid + 1;
 			}
 		}
-		return idx;
+		return right;
 	}
 }
