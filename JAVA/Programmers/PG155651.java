@@ -15,14 +15,15 @@ public class PG155651 {
 	}
 
 	public static int solution(String[][] book_time) {
-		// 예약시간 int로 변환
 		int[][] bookings = new int[book_time.length][2];
+
+		// 시간 String -> int 변환
 		for (int i = 0; i < book_time.length; i++) {
 			bookings[i][0] = toMinutes(book_time[i][0]);
 			bookings[i][1] = toMinutes(book_time[i][1]) + 10;
 		}
 
-		// 입실시간 빠른 순서로 정렬
+		// 시작 시간 순 정렬
 		Arrays.sort(bookings, new Comparator<int[]>() {
 			@Override
 			public int compare(int[] a, int[] b) {
@@ -30,25 +31,28 @@ public class PG155651 {
 			}
 		});
 
+		// 방별 퇴실 시간 저장
 		PriorityQueue<Integer> pq = new PriorityQueue<>();
-		for (int[] booking : bookings) {
+		for (int booking[] : bookings) {
 			int start = booking[0];
 			int end = booking[1];
 
-			// 객실 재사용 가능한 경우
-			if (!pq.isEmpty() && start >= pq.peek()) {
-				pq.poll();
+			// 방 재사용 가능
+			if (!pq.isEmpty()) {
+				if (pq.peek() <= start) {
+					pq.poll();
+				}
 			}
-			// 객실 다시 이용 가능한 시간 저장
+			// 방 추가
 			pq.offer(end);
 		}
+
 		return pq.size();
 	}
 
 	public static int toMinutes(String time) {
-		String[] hhmm = time.split(":");
-		int h = Integer.parseInt(hhmm[0]);
-		int m = Integer.parseInt(hhmm[1]);
-		return h * 60 + m;
+		// 시간 파싱
+		String[] t = time.split(":");
+		return Integer.parseInt(t[0]) * 60 + Integer.parseInt(t[1]);
 	}
 }
