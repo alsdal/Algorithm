@@ -46,7 +46,6 @@ public class PG155651 {
 			// 방 추가
 			pq.offer(end);
 		}
-
 		return pq.size();
 	}
 
