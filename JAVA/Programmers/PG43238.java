@@ -12,28 +12,30 @@ public class PG43238 {
 	}
 
 	public static long solution(int n, int[] times) {
-		// 심사시간 짧은 순 정렬
+		// 심사 시간순 정렬
 		Arrays.sort(times);
-		// 총 심사시간 최소, 최대 설정
+
+		// 최소, 최대 시간
 		long left = times[0];
 		long right = (long) times[times.length - 1] * n;
 
-		// lower bound 이분탐색
 		while (left < right) {
 			long mid = (left + right) / 2;
 
-			// 심사 가능한 사람 수
+			// 심사 가능 사람 수 계산
 			long cnt = 0;
-			for (int time : times) {
-				cnt += mid / time;
+			for (int t : times) {
+				cnt += mid / t;
 			}
 
+			// lower bound 탐색
 			if (cnt >= n) {
 				right = mid;
 			} else {
 				left = mid + 1;
 			}
 		}
+
 		return right;
 	}
 }
