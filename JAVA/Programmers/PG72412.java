@@ -25,13 +25,12 @@ public class PG72412 {
 		}
 	}
 
-	static Map<String, List<Integer>> map;
+	static Map<String, List<Integer>> map = new HashMap<>();
 
 	public static int[] solution(String[] info, String[] query) {
-		map = new HashMap<>();
 		int[] answer = new int[query.length];
 
-		// 지원자 정보 파싱 후 키 생성
+		// 지원자 정보 파싱, 키 생성, HashMap에 저장
 		for (String s : info) {
 			String[] arr = s.split(" ");
 			makeKey(arr, 0, "");
@@ -42,49 +41,48 @@ public class PG72412 {
 			Collections.sort(list);
 		}
 
-		// 조건 탐색
+		// 쿼리 파싱
 		for (int i = 0; i < query.length; i++) {
-			// 쿼리 조건 추출
-			String[] q = query[i].replaceAll(" and ", " ").split(" ");
+			String[] q = query[i].replace(" and ", " ").split(" ");
 			String key = q[0] + q[1] + q[2] + q[3];
 			int score = Integer.parseInt(q[4]);
 
-			// 조건 만족하는 지원자 없는 경우 예외 처리
 			if (!map.containsKey(key)) {
 				answer[i] = 0;
 				continue;
 			}
 
-			// lower bound 이분탐색
 			List<Integer> list = map.get(key);
-			answer[i] = list.size() - lowerBoundIdx(list, score);
+			answer[i] = list.size() - lowerBound(list, score);
 		}
 
 		return answer;
 	}
 
-	// dfs로 키 생성
+	// dfs로 가능한 모든 키 조합 생성
 	public static void makeKey(String[] arr, int depth, String key) {
-		// 키별 점수 저장
 		if (depth == 4) {
 			int score = Integer.parseInt(arr[4]);
+
 			if (!map.containsKey(key)) {
 				map.put(key, new ArrayList<>());
 			}
 			map.get(key).add(score);
 			return;
 		}
+
 		makeKey(arr, depth + 1, key + arr[depth]);
 		makeKey(arr, depth + 1, key + "-");
 	}
 
-	public static int lowerBoundIdx(List<Integer> list, int score) {
-		// 리스트 인덱스 최소, 최대
+	// lowerBound로 조건 만족하는 최소 인덱스 반환
+	public static int lowerBound(List<Integer> list, int score) {
 		int left = 0;
 		int right = list.size();
 
 		while (left < right) {
 			int mid = (left + right) / 2;
+
 			if (list.get(mid) >= score) {
 				right = mid;
 			} else {
